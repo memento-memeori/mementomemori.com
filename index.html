@@ -29,10 +29,16 @@ header{
 .wrap{max-width:1100px;margin:0 auto;padding:14px 16px;}
 h1{margin:0;font-size:20px;font-weight:650;}
 .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35;}
-.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.controls{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  align-items:stretch;
+  margin-top:12px;
+}
 input[type="search"]{
-  flex:1;
-  min-width:220px;
+  width:100%;
+  min-width:0;
   padding:10px 12px;
   border:1px solid var(--line);
   border-radius:10px;
@@ -126,6 +132,21 @@ kbd{
 .badges{
   display:none !important;
 }
+  /* Alphabetical dropdown menu bar */
+#alphaMenu{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--bg);
+  color:var(--text);
+  outline:none;
+}
+#alphaMenu option,
+#alphaMenu optgroup{
+  background:var(--bg);
+  color:var(--text);
+}
 </style>
 </head>
 <body>
@@ -135,6 +156,9 @@ kbd{
     <div class="sub">Single-page index of URL's to OSINT, cybersecurity and forensic resources. Press <kbd>/</kbd> to jump to search.</div>
     <div class="controls">
       <input id="q" type="search" placeholder="Search (e.g., 'whois', 'abuse', 'breach', 'pdf')"/>
+      <select id="alphaMenu" aria-label="Open tool by name">
+  <option value="">Open a tool (A–Z)…</option>
+</select>
       <div class="badges" id="badges">
 
 <a class="badge" href="#miscellaneous"><span>Miscellaneous</span> <span class="count">(42)</span></a>
@@ -791,6 +815,59 @@ kbd{
     }
 
     pill.textContent = desc || 'Reference tool';
+  });
+})();
+(function buildAlphaMenu(){
+  const menu = document.getElementById('alphaMenu');
+  if (!menu) return;
+
+  // Pull tools from the page
+  const items = Array.from(document.querySelectorAll('.tool a.link'))
+    .map(a => ({
+      name: (a.textContent || '').trim(),
+      url: a.getAttribute('href') || ''
+    }))
+    .filter(x => x.name && x.url);
+
+  // Sort alphabetically by display name
+  items.sort((a,b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+
+  // Group into A–Z + #
+  const groups = new Map();
+  const getKey = (s) => {
+    const ch = (s || '').trim().charAt(0).toUpperCase();
+    return (ch >= 'A' && ch <= 'Z') ? ch : '#';
+  };
+
+  items.forEach(it => {
+    const k = getKey(it.name);
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(it);
+  });
+
+  // Clear any existing (keep first placeholder)
+  menu.querySelectorAll('optgroup, option:not(:first-child)').forEach(n => n.remove());
+
+  // Render optgroups in order
+  const keys = Array.from(groups.keys()).sort((a,b) => (a === '#') - (b === '#') || a.localeCompare(b));
+  keys.forEach(k => {
+    const og = document.createElement('optgroup');
+    og.label = k;
+    groups.get(k).forEach(it => {
+      const opt = document.createElement('option');
+      opt.value = it.url;
+      opt.textContent = it.name;
+      og.appendChild(opt);
+    });
+    menu.appendChild(og);
+  });
+
+  // Open selected tool in a new tab; reset back to placeholder
+  menu.addEventListener('change', () => {
+    const url = menu.value;
+    if (!url) return;
+    window.open(url, '_blank', 'noopener,noreferrer');
+    menu.value = '';
   });
 })();
 </script>
