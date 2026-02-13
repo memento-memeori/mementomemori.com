@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -50,7 +51,7 @@ input[type="search"]::placeholder{
   color:var(--muted);
 }
 .badges{display:flex;gap:8px;flex-wrap:wrap}
-badge{
+.badge{
   border:1px solid var(--line);
   background:var(--panel);
   color:var(--text);
@@ -147,6 +148,24 @@ kbd{
   background:var(--bg);
   color:var(--text);
 }
+
+
+/* Equal-height tool cards within each category */
+li.tool{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:120px;
+}
+a.link{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+.meta{
+  min-height:36px;
+}
 </style>
 </head>
 <body>
@@ -160,37 +179,80 @@ kbd{
 <option value="">Toolkit (A–Z)…</option>
 </select>
 <div class="badges" id="badges">
-<a class="badge" href="#social-media-and-forum-searches"><span>Social Media and Forum searches</span></a>
-<a class="badge" href="#international-references"><span>International References</span> <span class="count"></span></a>
-<a class="badge" href="#ip-network-intel-reputation"><span>IP, network intel &amp; reputation</span> <span class="count"></span></a>
-<a class="badge" href="#osint-frameworks-collections"><span>OSINT frameworks &amp; collections</span> <span class="count"></span></a>
-<a class="badge" href="#leaks-breaches-exploits"><span>Leaks, breaches &amp; exploits</span> <span class="count"></span></a>
-<a class="badge" href="#government-standards"><span>Government &amp; standards</span> <span class="count"></span></a>
-<a class="badge" href="#web-dns-ssl-email-diagnostics"><span>Web, DNS, SSL &amp; email diagnostics</span> <span class="count"></span></a>
-<a class="badge" href="#fraud-scams-reporting"><span>Fraud, scams &amp; reporting</span> <span class="count"></span></a>
-<a class="badge" href="#people-public-records-search"><span>People &amp; public records search</span> <span class="count"></span></a>
-<a class="badge" href="#test-data-generators"><span>Test data &amp; generators</span> <span class="count"></span></a>
-<a class="badge" href="#whois-domain-registration"><span>WHOIS &amp; domain registration</span> <span class="count"></span></a>
-<a class="badge" href="#company-entity-search"><span>Company &amp; entity search</span> <span class="count"></span></a>
-<a class="badge" href="#decoding-hashing-crypto-utilities"><span>Decoding, hashing &amp; crypto utilities</span> <span class="count"></span></a>
-<a class="badge" href="#downloaders-converters-shorteners"><span>Downloaders, converters &amp; shorteners</span> <span class="count"></span></a>
-<a class="badge" href="#image-file-forensics"><span>Image &amp; file forensics</span> <span class="count"></span></a>
-<a class="badge" href="#link-tracking-ip-loggers-use-ethically"><span>Link tracking &amp; IP loggers (use ethically)</span> <span class="count"></span></a>
-<a class="badge" href="#web-archives-caching"><span>Web archives &amp; caching</span> <span class="count"></span></a>
-<a class="badge" href="#dev-scripting-resources"><span>Dev &amp; scripting resources</span> <span class="count"></span></a>
-<a class="badge" href="#finance-investing-reference"><span>Finance &amp; investing reference</span> <span class="count"></span></a>
-<a class="badge" href="#malware-analysis-sandboxes"><span>Malware analysis &amp; sandboxes</span> <span class="count"></span></a>
-<a class="badge" href="#ocr-document-conversion"><span>OCR &amp; document conversion</span> <span class="count"></span></a>
-<a class="badge" href="#proxies-anonymizers"><span>Proxies &amp; anonymizers</span> <span class="count"></span></a>
-<a class="badge" href="#uptime-outage-monitoring"><span>Uptime &amp; outage monitoring</span> <span class="count"></span></a>
+<a class="badge" href="#social-media-and-forum-searches"><span>Social Media and Forum Searches</span></a>
+<a class="badge" href="#international-references"><span>International References</span> </a>
+<a class="badge" href="#ip-network-intel-reputation"><span>IP, Network Intel &amp; Reputation</span> </a>
+<a class="badge" href="#osint-frameworks-collections"><span>OSINT Frameworks &amp; Collections</span> </a>
+<a class="badge" href="#leaks-breaches-exploits"><span>Leaks, Breaches &amp; Exploits</span> </a>
+<a class="badge" href="#government-standards"><span>Government &amp; Standards</span> </a>
+<a class="badge" href="#web-dns-ssl-email-diagnostics"><span>Web, DNS, SSL &amp; Email Diagnostics</span> </a>
+<a class="badge" href="#fraud-scams-reporting"><span>Fraud, Scams &amp; Reporting</span> </a>
+<a class="badge" href="#people-public-records-search"><span>People &amp; Public Records Search</span> </a>
+<a class="badge" href="#test-data-generators"><span>Test Data &amp; Generators</span> </a>
+<a class="badge" href="#whois-domain-registration"><span>WHOIS &amp; Domain Registration</span> </a>
+<a class="badge" href="#company-entity-search"><span>Company &amp; Entity Search</span> </a>
+<a class="badge" href="#decoding-hashing-crypto-utilities"><span>Decoding, Hashing &amp; Crypto Utilities</span> </a>
+<a class="badge" href="#downloaders-converters-shorteners"><span>Downloaders, Converters &amp; Shorteners</span> </a>
+<a class="badge" href="#image-file-forensics"><span>Image &amp; File Forensics</span> </a>
+<a class="badge" href="#link-tracking-ip-loggers-use-ethically"><span>Link Tracking &amp; IP Loggers (Use Ethically)</span> </a>
+<a class="badge" href="#web-archives-caching"><span>Web Archives &amp; Caching</span> </a>
+<a class="badge" href="#dev-scripting-resources"><span>Dev &amp; Scripting Resources</span> </a>
+<a class="badge" href="#finance-investing-reference"><span>Finance &amp; Investing Reference</span> </a>
+<a class="badge" href="#malware-analysis-sandboxes"><span>Malware Analysis &amp; Sandboxes</span> </a>
+<a class="badge" href="#ocr-document-conversion"><span>OCR &amp; Document Conversion</span> </a>
+<a class="badge" href="#proxies-anonymizers"><span>Proxies &amp; Anonymizers</span> </a>
+<a class="badge" href="#uptime-outage-monitoring"><span>Uptime &amp; Outage Monitoring</span> </a>
 </div>
 </div>
 </div>
 </header>
 <main>
-
-<section data-category="Public Records &amp; Social Media " id="people-public-records-search"><h2>People &amp; public records search <span class="pill"></span></h2>
+<section data-category="Public Records &amp; Social Media" id="people-public-records-search"><h2>People &amp; Public Records Search</h2>
 <ul>
+<li class="tool" data-title="car make/model recognition api carnet.ai https://carnet.ai/">
+<a class="link" href="https://carnet.ai/" rel="noopener noreferrer" target="_blank">Car Make/Model Recognition API</a>
+<div class="meta"><span>carnet.ai</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="clustrmaps - free people search engine clustrmaps.com https://clustrmaps.com/">
+<a class="link" href="https://clustrmaps.com/" rel="noopener noreferrer" target="_blank">Clustrmaps - Free People Search Engine</a>
+<div class="meta"><span>clustrmaps.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="dating sites | usersearch usersearch.org https://usersearch.org/index.php">
+<a class="link" href="https://usersearch.org/index.php" rel="noopener noreferrer" target="_blank">Dating Sites | UserSearch</a>
+<div class="meta"><span>usersearch.org</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="digital footprint check digitalfootprintcheck.com https://www.digitalfootprintcheck.com/checks/free-checker.html">
+<a class="link" href="https://www.digitalfootprintcheck.com/checks/free-checker.html" rel="noopener noreferrer" target="_blank">Digital Footprint Check</a>
+<div class="meta"><span>digitalfootprintcheck.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="email finder: free email search - no signup required | experte.com experte.com https://www.experte.com/email-finder">
+<a class="link" href="https://www.experte.com/email-finder" rel="noopener noreferrer" target="_blank">Email Finder: Free Email Search - No Signup Required | EXPERTE.com</a>
+<div class="meta"><span>experte.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="email finder| snov.io snov.io https://snov.io/email-finder">
+<a class="link" href="https://snov.io/email-finder" rel="noopener noreferrer" target="_blank">Email Finder| Snov.io</a>
+<div class="meta"><span>snov.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
+<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
+<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
+<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
+<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="facebook id - get your unique facebook user &amp; page id randomtools.io https://randomtools.io/">
+<a class="link" href="https://randomtools.io/" rel="noopener noreferrer" target="_blank">Facebook ID - Get Your Unique Facebook User &amp; Page ID</a>
+<div class="meta"><span>randomtools.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="find people by name | free people finder | thatsthem thatsthem.com https://thatsthem.com/people-search">
+<a class="link" href="https://thatsthem.com/people-search" rel="noopener noreferrer" target="_blank">Find People by Name | Free People Finder | ThatsThem</a>
+<div class="meta"><span>thatsthem.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="historical military records - fold3 fold3.com https://www.fold3.com/">
+<a class="link" href="https://www.fold3.com/" rel="noopener noreferrer" target="_blank">Historical military records - Fold3</a>
+<div class="meta"><span>fold3.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
 <li class="tool" data-title="Lookups - imported - lookups.melissa.com - https://lookups.melissa.com/home">
 <a class="link" href="https://lookups.melissa.com/home" rel="noopener noreferrer" target="_blank">Lookups</a>
 <div class="meta"><span>lookups.melissa.com</span><span class="pill">Imported</span></div>
@@ -203,184 +265,123 @@ kbd{
 <a class="link" href="https://publicrecords.searchsystems.net/" rel="noopener noreferrer" target="_blank">Public Records | Search the Original Resource Worldwide</a>
 <div class="meta"><span>publicrecords.searchsystems.net</span><span class="pill">Tools / LookUp</span></div>
 </li>
-<li class="tool" data-title="clustrmaps - free people search engine clustrmaps.com https://clustrmaps.com/">
-<a class="link" href="https://clustrmaps.com/" rel="noopener noreferrer" target="_blank">Clustrmaps - Free People Search Engine</a>
-<div class="meta"><span>clustrmaps.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="dating sites | usersearch usersearch.org https://usersearch.org/index.php">
-<a class="link" href="https://usersearch.org/index.php" rel="noopener noreferrer" target="_blank">Dating Sites | UserSearch</a>
-<div class="meta"><span>usersearch.org</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="find people by name | free people finder | thatsthem thatsthem.com https://thatsthem.com/people-search">
-<a class="link" href="https://thatsthem.com/people-search" rel="noopener noreferrer" target="_blank">Find People by Name | Free People Finder | ThatsThem</a>
-<div class="meta"><span>thatsthem.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="whitepages® - official site | find people, phone numbers, addresses &amp; more whitepages.com https://www.whitepages.com/">
-<a class="link" href="https://www.whitepages.com/" rel="noopener noreferrer" target="_blank">Whitepages® - Official Site | Find People, Phone Numbers, Addresses &amp; More</a>
-<div class="meta"><span>whitepages.com</span><span class="pill">Tools / LookUp</span></div>
+<li class="tool" data-title="social media search engine social-searcher.com https://www.social-searcher.com/">
+<a class="link" href="https://www.social-searcher.com/" rel="noopener noreferrer" target="_blank">Social Media Search Engine</a>
+<div class="meta"><span>social-searcher.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="usa directory officialusa.com https://www.officialusa.com/">
 <a class="link" href="https://www.officialusa.com/" rel="noopener noreferrer" target="_blank">USA Directory</a>
 <div class="meta"><span>officialusa.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
-<li class="tool" data-title="email finder: free email search - no signup required | experte.com experte.com https://www.experte.com/email-finder">
-<a class="link" href="https://www.experte.com/email-finder" rel="noopener noreferrer" target="_blank">Email Finder: Free Email Search - No Signup Required | EXPERTE.com</a>
-<div class="meta"><span>experte.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="email finder| snov.io snov.io https://snov.io/email-finder">
-<a class="link" href="https://snov.io/email-finder" rel="noopener noreferrer" target="_blank">Email Finder| Snov.io</a>
-<div class="meta"><span>snov.io</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="historical military records - fold3 fold3.com https://www.fold3.com/">
-<a class="link" href="https://www.fold3.com/" rel="noopener noreferrer" target="_blank">Historical military records - Fold3</a>
-<div class="meta"><span>fold3.com</span><span class="pill">Tools / LookUp</span></div>
+<li class="tool" data-title="username search whatsmyname.app https://whatsmyname.app/">
+<a class="link" href="https://whatsmyname.app/" rel="noopener noreferrer" target="_blank">Username Search</a>
+<div class="meta"><span>whatsmyname.app</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="wedding registry search and website finder theknot.com https://www.theknot.com/registry/couplesearch">
 <a class="link" href="https://www.theknot.com/registry/couplesearch" rel="noopener noreferrer" target="_blank">Wedding Registry Search and Website Finder</a>
 <div class="meta"><span>theknot.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
-<li class="tool" data-title="car make/model recognition api carnet.ai https://carnet.ai/">
-<a class="link" href="https://carnet.ai/" rel="noopener noreferrer" target="_blank">Car Make/Model Recognition API</a>
-<div class="meta"><span>carnet.ai</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
-<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
-<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="digital footprint check digitalfootprintcheck.com https://www.digitalfootprintcheck.com/checks/free-checker.html">
-<a class="link" href="https://www.digitalfootprintcheck.com/checks/free-checker.html" rel="noopener noreferrer" target="_blank">Digital Footprint Check</a>
-<div class="meta"><span>digitalfootprintcheck.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="username search whatsmyname.app https://whatsmyname.app/">
-<a class="link" href="https://whatsmyname.app/" rel="noopener noreferrer" target="_blank">Username Search</a>
-<div class="meta"><span>whatsmyname.app</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="social media search engine social-searcher.com https://www.social-searcher.com/">
-<a class="link" href="https://www.social-searcher.com/" rel="noopener noreferrer" target="_blank">Social Media Search Engine</a>
-<div class="meta"><span>social-searcher.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="facebook id - get your unique facebook user &amp; page id randomtools.io https://randomtools.io/">
-<a class="link" href="https://randomtools.io/" rel="noopener noreferrer" target="_blank">Facebook ID - Get Your Unique Facebook User &amp; Page ID</a>
-<div class="meta"><span>randomtools.io</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
-<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
-<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
+<li class="tool" data-title="whitepages® - official site | find people, phone numbers, addresses &amp; more whitepages.com https://www.whitepages.com/">
+<a class="link" href="https://www.whitepages.com/" rel="noopener noreferrer" target="_blank">Whitepages® - Official Site | Find People, Phone Numbers, Addresses &amp; More</a>
+<div class="meta"><span>whitepages.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
 </ul>
 </section>
-
-<section data-category="Corporate &amp; Public Entities" id="company-entity-search"><h2>Company &amp; entity search <span class="pill"></span></h2>
+<section data-category="Company &amp; Public Entities" id="company-entity-search"><h2>Company &amp; Entity Search</h2>
 <ul>
+
+
+
+
+
+
+
+
 <li class="tool" data-title="company index thelayoff.com https://www.thelayoff.com/index/e/page-1">
 <a class="link" href="https://www.thelayoff.com/index/e/page-1" rel="noopener noreferrer" target="_blank">Company Index</a>
 <div class="meta"><span>thelayoff.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="edgar full text search | sec.gov sec.gov https://www.sec.gov/edgar/search/">
-<a class="link" href="https://www.sec.gov/edgar/search/" rel="noopener noreferrer" target="_blank">EDGAR Full Text Search | SEC.gov</a>
-<div class="meta"><span>sec.gov</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="opencorporates.com opencorporates.com https://opencorporates.com/">
-<a class="link" href="https://opencorporates.com/" rel="noopener noreferrer" target="_blank">opencorporates.com</a>
-<div class="meta"><span>opencorporates.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="corporation wiki - find connections between people and companies corporationwiki.com https://www.corporationwiki.com/">
 <a class="link" href="https://www.corporationwiki.com/" rel="noopener noreferrer" target="_blank">Corporation Wiki - Find Connections between People and Companies</a>
 <div class="meta"><span>corporationwiki.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
-<li class="tool" data-title="public corp lookup qpublic.schneidercorp.com https://qpublic.schneidercorp.com/">
-<a class="link" href="https://qpublic.schneidercorp.com/" rel="noopener noreferrer" target="_blank">Public Corp Lookup</a>
-<div class="meta"><span>qpublic.schneidercorp.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="importyeti - find quality suppliers importyeti.com https://www.importyeti.com/">
-<a class="link" href="https://www.importyeti.com/" rel="noopener noreferrer" target="_blank">ImportYeti - Find Quality Suppliers</a>
-<div class="meta"><span>importyeti.com</span><span class="pill">Tools / LookUp</span></div>
+<li class="tool" data-title="edgar full text search | sec.gov sec.gov https://www.sec.gov/edgar/search/">
+<a class="link" href="https://www.sec.gov/edgar/search/" rel="noopener noreferrer" target="_blank">EDGAR Full Text Search | SEC.gov</a>
+<div class="meta"><span>sec.gov</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="find sites owned by the same person analyzeid.com https://analyzeid.com/">
 <a class="link" href="https://analyzeid.com/" rel="noopener noreferrer" target="_blank">Find Sites Owned By The Same Person</a>
 <div class="meta"><span>analyzeid.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
+<li class="tool" data-title="importyeti - find quality suppliers importyeti.com https://www.importyeti.com/">
+<a class="link" href="https://www.importyeti.com/" rel="noopener noreferrer" target="_blank">ImportYeti - Find Quality Suppliers</a>
+<div class="meta"><span>importyeti.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="opencorporates.com opencorporates.com https://opencorporates.com/">
+<a class="link" href="https://opencorporates.com/" rel="noopener noreferrer" target="_blank">opencorporates.com</a>
+<div class="meta"><span>opencorporates.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="public corp lookup qpublic.schneidercorp.com https://qpublic.schneidercorp.com/">
+<a class="link" href="https://qpublic.schneidercorp.com/" rel="noopener noreferrer" target="_blank">Public Corp Lookup</a>
+<div class="meta"><span>qpublic.schneidercorp.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
 </ul>
 </section>
-
-<section data-category="International References" id="international-references"><h2>International References <span class="pill"></span></h2>
+<section data-category="International References" id="international-references"><h2>International References</h2>
 <ul>
-<li class="tool" data-title="nigeria24 nigeria24.me https://nigeria24.me/">
-<a class="link" href="https://nigeria24.me/" rel="noopener noreferrer" target="_blank">Nigeria24</a>
-<div class="meta"><span>nigeria24.me</span><span class="pill">Tools / LookUp</span></div>
-</li>
+
+
+
+
+
 <li class="tool" data-title="international phone directories thisnumber.com https://www.thisnumber.com/">
 <a class="link" href="https://www.thisnumber.com/" rel="noopener noreferrer" target="_blank">International Phone Directories</a>
 <div class="meta"><span>thisnumber.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="nigeria’s verified online business directory portal – businesslist.com.ng businesslist.com.ng https://www.businesslist.com.ng/">
-<a class="link" href="https://www.businesslist.com.ng/" rel="noopener noreferrer" target="_blank">Nigeria’s Verified Online Business Directory Portal – BusinessList.com.ng</a>
-<div class="meta"><span>businesslist.com.ng</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="landoffree.com - say what you really think. landoffree.com https://www.landoffree.com/">
 <a class="link" href="https://www.landoffree.com/" rel="noopener noreferrer" target="_blank">LandOfFree.com - Say what you really think.</a>
 <div class="meta"><span>landoffree.com</span><span class="pill">Tools / Reference</span></div>
 </li>
+<li class="tool" data-title="nigeria24 nigeria24.me https://nigeria24.me/">
+<a class="link" href="https://nigeria24.me/" rel="noopener noreferrer" target="_blank">Nigeria24</a>
+<div class="meta"><span>nigeria24.me</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="nigeria’s verified online business directory portal – businesslist.com.ng businesslist.com.ng https://www.businesslist.com.ng/">
+<a class="link" href="https://www.businesslist.com.ng/" rel="noopener noreferrer" target="_blank">Nigeria’s Verified Online Business Directory Portal – BusinessList.com.ng</a>
+<div class="meta"><span>businesslist.com.ng</span><span class="pill">Tools / LookUp</span></div>
+</li>
 </ul>
 </section>
-
-<section data-category="IP, Network &amp; DNS" id="ip-network-intel-reputation"><h2>IP, network intel &amp; reputation <span class="pill"></span></h2>
+<section data-category="IP, Network &amp; DNS" id="ip-network-intel-reputation"><h2>IP, Network Intel &amp; Reputation</h2>
 <ul>
-<li class="tool" data-title="bot lookup botscout.com https://botscout.com/">
-<a class="link" href="https://botscout.com/" rel="noopener noreferrer" target="_blank">Bot Lookup</a>
-<div class="meta"><span>botscout.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="dns records and full dns report securitytrails.com https://securitytrails.com/domain/gamersafer.com/dns">
-<a class="link" href="https://securitytrails.com/domain/gamersafer.com/dns" rel="noopener noreferrer" target="_blank">DNS records and Full DNS Report</a>
-<div class="meta"><span>securitytrails.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="ip address data with ipinfo api tools - ipinfo.io ipinfo.io https://ipinfo.io/tools/map">
-<a class="link" href="https://ipinfo.io/tools/map" rel="noopener noreferrer" target="_blank">IP Address Data with IPinfo API Tools - IPinfo.io</a>
-<div class="meta"><span>ipinfo.io</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="network intelligence | netify netify.ai https://www.netify.ai/">
-<a class="link" href="https://www.netify.ai/" rel="noopener noreferrer" target="_blank">Network Intelligence | Netify</a>
-<div class="meta"><span>netify.ai</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="phone number lookup api service | check phone number ipqualityscore.com https://www.ipqualityscore.com/free-phone-number-lookup">
-<a class="link" href="https://www.ipqualityscore.com" rel="noopener noreferrer" target="_blank">IP Reputation Score</a>
-<div class="meta"><span>ipqualityscore.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="urlscan.io urlscan.io https://urlscan.io/search/#*">
-<a class="link" href="https://urlscan.io/search/#*" rel="noopener noreferrer" target="_blank">urlscan.io</a>
-<div class="meta"><span>urlscan.io</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
-<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
-<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="domains integrity service by hold security llc. holdintegrity.com https://holdintegrity.com/checker">
-<a class="link" href="https://holdintegrity.com/checker" rel="noopener noreferrer" target="_blank">Domains Integrity Service by Hold Security LLC.</a>
-<div class="meta"><span>holdintegrity.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="domain investigator abhijithb200.github.io https://abhijithb200.github.io/investigator/">
-<a class="link" href="https://abhijithb200.github.io/investigator/" rel="noopener noreferrer" target="_blank">Domain Investigator</a>
-<div class="meta"><span>abhijithb200.github.io</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="icann lookup lookup.icann.org https://lookup.icann.org/en">
-<a class="link" href="https://lookup.icann.org/en" rel="noopener noreferrer" target="_blank">ICANN Lookup</a>
-<div class="meta"><span>lookup.icann.org</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="ip whois lookup whois.com https://www.whois.com/whois/">
-<a class="link" href="https://www.whois.com/whois/" rel="noopener noreferrer" target="_blank">IP Whois Lookup</a>
-<div class="meta"><span>whois.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="reverse ip, ns, mx, whois and search tools dnslytics.com https://dnslytics.com/">
-<a class="link" href="https://dnslytics.com/" rel="noopener noreferrer" target="_blank">Reverse IP, NS, MX, WHOIS and Search Tools</a>
-<div class="meta"><span>dnslytics.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="Peeringdb - imported - peeringdb.com - https://peeringdb.com">
-<a class="link" href="https://peeringdb.com" rel="noopener noreferrer" target="_blank">Peeringdb</a>
-<div class="meta"><span>peeringdb.com</span><span class="pill">Imported</span></div>
-</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <li class="tool" data-title="analyse your http response headers securityheaders.com https://securityheaders.com/">
 <a class="link" href="https://securityheaders.com/" rel="noopener noreferrer" target="_blank">Analyse your HTTP response headers</a>
 <div class="meta"><span>securityheaders.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="bot lookup botscout.com https://botscout.com/">
+<a class="link" href="https://botscout.com/" rel="noopener noreferrer" target="_blank">Bot Lookup</a>
+<div class="meta"><span>botscout.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="cms detector whatcms.org https://whatcms.org/">
 <a class="link" href="https://whatcms.org/" rel="noopener noreferrer" target="_blank">CMS Detector</a>
@@ -394,13 +395,61 @@ kbd{
 <a class="link" href="https://www.grc.com/dns/benchmark.htm" rel="noopener noreferrer" target="_blank">DNS Nameserver Performance Benchmark</a>
 <div class="meta"><span>grc.com</span><span class="pill">Tools / Internet</span></div>
 </li>
+<li class="tool" data-title="dns records and full dns report securitytrails.com https://securitytrails.com/domain/gamersafer.com/dns">
+<a class="link" href="https://securitytrails.com/domain/gamersafer.com/dns" rel="noopener noreferrer" target="_blank">DNS records and Full DNS Report</a>
+<div class="meta"><span>securitytrails.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="domain investigator abhijithb200.github.io https://abhijithb200.github.io/investigator/">
+<a class="link" href="https://abhijithb200.github.io/investigator/" rel="noopener noreferrer" target="_blank">Domain Investigator</a>
+<div class="meta"><span>abhijithb200.github.io</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="domains integrity service by hold security llc. holdintegrity.com https://holdintegrity.com/checker">
+<a class="link" href="https://holdintegrity.com/checker" rel="noopener noreferrer" target="_blank">Domains Integrity Service by Hold Security LLC.</a>
+<div class="meta"><span>holdintegrity.com</span><span class="pill">Tools / Internet</span></div>
+</li>
 <li class="tool" data-title="email header analyzer - mxtoolbox mxtoolbox.com https://mxtoolbox.com/emailheaders.aspx">
 <a class="link" href="https://mxtoolbox.com/EmailHeaders.aspx" rel="noopener noreferrer" target="_blank">Email Header Analyzer - MxToolbox</a>
 <div class="meta"><span>mxtoolbox.com</span><span class="pill">Tools / Internet</span></div>
 </li>
+<li class="tool" data-title="email reputation emailrep.io https://emailrep.io/">
+<a class="link" href="https://emailrep.io/" rel="noopener noreferrer" target="_blank">Email Reputation</a>
+<div class="meta"><span>emailrep.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="icann lookup lookup.icann.org https://lookup.icann.org/en">
+<a class="link" href="https://lookup.icann.org/en" rel="noopener noreferrer" target="_blank">ICANN Lookup</a>
+<div class="meta"><span>lookup.icann.org</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="ip address data with ipinfo api tools - ipinfo.io ipinfo.io https://ipinfo.io/tools/map">
+<a class="link" href="https://ipinfo.io/tools/map" rel="noopener noreferrer" target="_blank">IP Address Data with IPinfo API Tools - IPinfo.io</a>
+<div class="meta"><span>ipinfo.io</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="phone number lookup api service | check phone number ipqualityscore.com https://www.ipqualityscore.com/free-phone-number-lookup">
+<a class="link" href="https://www.ipqualityscore.com" rel="noopener noreferrer" target="_blank">IP Reputation Score</a>
+<div class="meta"><span>ipqualityscore.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="ip whois lookup whois.com https://www.whois.com/whois/">
+<a class="link" href="https://www.whois.com/whois/" rel="noopener noreferrer" target="_blank">IP Whois Lookup</a>
+<div class="meta"><span>whois.com</span><span class="pill">Tools / Internet</span></div>
+</li>
 <li class="tool" data-title="multiple origin routes report - bgp.he.net bgp.he.net https://bgp.he.net/report/multi-origin-routes">
 <a class="link" href="https://bgp.he.net/report/multi-origin-routes" rel="noopener noreferrer" target="_blank">Multiple Origin Routes Report - bgp.he.net</a>
 <div class="meta"><span>bgp.he.net</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="network intelligence | netify netify.ai https://www.netify.ai/">
+<a class="link" href="https://www.netify.ai/" rel="noopener noreferrer" target="_blank">Network Intelligence | Netify</a>
+<div class="meta"><span>netify.ai</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="Peeringdb - imported - peeringdb.com - https://peeringdb.com">
+<a class="link" href="https://peeringdb.com" rel="noopener noreferrer" target="_blank">Peeringdb</a>
+<div class="meta"><span>peeringdb.com</span><span class="pill">Imported</span></div>
+</li>
+<li class="tool" data-title="reverse ip, ns, mx, whois and search tools dnslytics.com https://dnslytics.com/">
+<a class="link" href="https://dnslytics.com/" rel="noopener noreferrer" target="_blank">Reverse IP, NS, MX, WHOIS and Search Tools</a>
+<div class="meta"><span>dnslytics.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="urlscan.io urlscan.io https://urlscan.io/search/#*">
+<a class="link" href="https://urlscan.io/search/#*" rel="noopener noreferrer" target="_blank">urlscan.io</a>
+<div class="meta"><span>urlscan.io</span><span class="pill">Tools / Internet</span></div>
 </li>
 <li class="tool" data-title="whatismybrowser.com explore.whatismybrowser.com https://explore.whatismybrowser.com/useragents/parse/">
 <a class="link" href="https://explore.whatismybrowser.com/useragents/parse/" rel="noopener noreferrer" target="_blank">WhatIsMyBrowser.com</a>
@@ -408,36 +457,22 @@ kbd{
 </li>
 </ul>
 </section>
-
-<section data-category="Malware Scanners, Metadata Analysis &amp; Sandboxes" id="proxies-anonymizers"><h2>Proxies &amp; anonymizers <span class="pill"></span></h2>
+<section data-category="Malware Scanners, Metadata Analysis &amp; Sandboxes" id="proxies-anonymizers"><h2>Proxies &amp; Anonymizers</h2>
 <ul>
-<li class="tool" data-title="weboproxy weboproxy.com https://weboproxy.com/">
-<a class="link" href="https://weboproxy.com/" rel="noopener noreferrer" target="_blank">WebOProxy - Web Based Tor Browser</a>
-<div class="meta"><span>weboproxy.com</span><span class="pill">Tools / Internet</span></div>
-</li>
+
+
+
+
+
+
+
+
+
+
+
 <li class="tool" data-title="automated malware analysis - joe sandbox cloud basic joesandbox.com https://www.joesandbox.com/#windows">
 <a class="link" href="https://www.joesandbox.com/#windows" rel="noopener noreferrer" target="_blank">Automated Malware Analysis - Joe Sandbox Cloud Basic</a>
 <div class="meta"><span>joesandbox.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="virustotal - home virustotal.com https://www.virustotal.com/gui/home/upload">
-<a class="link" href="https://www.virustotal.com/gui/home/upload" rel="noopener noreferrer" target="_blank">VirusTotal - Home</a>
-<div class="meta"><span>virustotal.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="scamalytics scamalytics.com https://scamalytics.com/">
-<a class="link" href="https://scamalytics.com/" rel="noopener noreferrer" target="_blank">Scamalytics</a>
-<div class="meta"><span>scamalytics.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="scamwatchhq scamwatchhq.com https://www.scamwatchhq.com/">
-<a class="link" href="https://www.scamwatchhq.com/" rel="noopener noreferrer" target="_blank">ScamWatchHQ</a>
-<div class="meta"><span>scamwatchhq.com</span><span class="pill">Tools / Exploits/Leaks</span></div>
-</li>
-<li class="tool" data-title="web link integrity scanner - scamadviser scamadviser.com https://www.scamadviser.com/check-website/leak-lookup.com">
-<a class="link" href="https://www.scamadviser.com/check-website/leak-lookup.com" rel="noopener noreferrer" target="_blank">Web Link Integrity Scanner - Scamadviser</a>
-<div class="meta"><span>scamadviser.com</span><span class="pill">Tools / Internet</span></div>
-</li>
-<li class="tool" data-title="urlscan.io urlscan.io https://urlscan.io/search/#*">
-<a class="link" href="https://urlscan.io/search/#*" rel="noopener noreferrer" target="_blank">urlscan.io</a>
-<div class="meta"><span>urlscan.io</span><span class="pill">Tools / Internet</span></div>
 </li>
 <li class="tool" data-title="file metadata analysis metadata2go.com https://www.metadata2go.com/">
 <a class="link" href="https://www.metadata2go.com/" rel="noopener noreferrer" target="_blank">File Metadata Analysis</a>
@@ -451,11 +486,41 @@ kbd{
 <a class="link" href="https://fotoforensics.com/" rel="noopener noreferrer" target="_blank">FotoForensics</a>
 <div class="meta"><span>fotoforensics.com</span><span class="pill">Tools / Internet</span></div>
 </li>
+<li class="tool" data-title="scamalytics scamalytics.com https://scamalytics.com/">
+<a class="link" href="https://scamalytics.com/" rel="noopener noreferrer" target="_blank">Scamalytics</a>
+<div class="meta"><span>scamalytics.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="scamwatchhq scamwatchhq.com https://www.scamwatchhq.com/">
+<a class="link" href="https://www.scamwatchhq.com/" rel="noopener noreferrer" target="_blank">ScamWatchHQ</a>
+<div class="meta"><span>scamwatchhq.com</span><span class="pill">Tools / Exploits/Leaks</span></div>
+</li>
+<li class="tool" data-title="urlscan.io urlscan.io https://urlscan.io/search/#*">
+<a class="link" href="https://urlscan.io/search/#*" rel="noopener noreferrer" target="_blank">urlscan.io</a>
+<div class="meta"><span>urlscan.io</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="virustotal - home virustotal.com https://www.virustotal.com/gui/home/upload">
+<a class="link" href="https://www.virustotal.com/gui/home/upload" rel="noopener noreferrer" target="_blank">VirusTotal - Home</a>
+<div class="meta"><span>virustotal.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="web link integrity scanner - scamadviser scamadviser.com https://www.scamadviser.com/check-website/leak-lookup.com">
+<a class="link" href="https://www.scamadviser.com/check-website/leak-lookup.com" rel="noopener noreferrer" target="_blank">Web Link Integrity Scanner - Scamadviser</a>
+<div class="meta"><span>scamadviser.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+<li class="tool" data-title="weboproxy weboproxy.com https://weboproxy.com/">
+<a class="link" href="https://weboproxy.com/" rel="noopener noreferrer" target="_blank">WebOProxy - Web Based Tor Browser</a>
+<div class="meta"><span>weboproxy.com</span><span class="pill">Tools / Internet</span></div>
+</li>
 </ul>
 </section>
-
-<section data-category="Decoders, Generators, Loggers (Use ethically)" id="decoding-hashing-crypto-utilities"><h2>Decoding, hashing &amp; crypto utilities <span class="pill"></span></h2>
+<section data-category="Decoders, Generators, Loggers (Use Ethically)" id="decoding-hashing-crypto-utilities"><h2>Decoding, Hashing &amp; Crypto Utilities</h2>
 <ul>
+
+
+
+
+
+
+
 <li class="tool" data-title="decrypt md5, sha1, mysql, ntlm, sha256, md5 email, sha256 email, sha512, wordpress, bcrypt hashes for free online hashes.com https://hashes.com/en/decrypt/hash">
 <a class="link" href="https://hashes.com/en/decrypt/hash" rel="noopener noreferrer" target="_blank">Decrypt MD5, SHA1, MySQL, NTLM, SHA256, MD5 Email, SHA256 Email, SHA512, Wordpress, Bcrypt hashes for free online</a>
 <div class="meta"><span>hashes.com</span><span class="pill">Tools / Internet</span></div>
@@ -464,9 +529,9 @@ kbd{
 <a class="link" href="https://www.dcode.fr/rot-47-cipher" rel="noopener noreferrer" target="_blank">Decrypt ROT-47 Cipher</a>
 <div class="meta"><span>dcode.fr</span><span class="pill">Tools / Internet</span></div>
 </li>
-<li class="tool" data-title="url shortener, branded short links &amp; analytics | tinyurl tinyurl.com https://tinyurl.com/">
-<a class="link" href="https://tinyurl.com/" rel="noopener noreferrer" target="_blank">URL Shortener, Branded Short Links &amp; Analytics | TinyURL</a>
-<div class="meta"><span>tinyurl.com</span><span class="pill">Tools / Internet</span></div>
+<li class="tool" data-title="gpsjam gps/gnss interference map gpsjam.org https://gpsjam.org/">
+<a class="link" href="https://gpsjam.org/" rel="noopener noreferrer" target="_blank">GPSJAM GPS/GNSS Interference Map</a>
+<div class="meta"><span>gpsjam.org</span><span class="pill">Tools / LookUp</span></div>
 </li>
 <li class="tool" data-title="grabify grabify.link https://grabify.link/">
 <a class="link" href="https://grabify.link/" rel="noopener noreferrer" target="_blank">Grabify</a>
@@ -476,14 +541,15 @@ kbd{
 <a class="link" href="https://iplogger.org/" rel="noopener noreferrer" target="_blank">IP Logger URL Shortener - Log and Track IP addresses</a>
 <div class="meta"><span>iplogger.org</span><span class="pill">Tools / Internet</span></div>
 </li>
-<li class="tool" data-title="gpsjam gps/gnss interference map gpsjam.org https://gpsjam.org/">
-<a class="link" href="https://gpsjam.org/" rel="noopener noreferrer" target="_blank">GPSJAM GPS/GNSS Interference Map</a>
-<div class="meta"><span>gpsjam.org</span><span class="pill">Tools / LookUp</span></div>
-</li>
 <li class="tool" data-title="port scanner - check, test, secure portscanner.online https://portscanner.online/">
 <a class="link" href="https://portscanner.online/" rel="noopener noreferrer" target="_blank">Port scanner - Check, Test, Secure</a>
 <div class="meta"><span>portscanner.online</span><span class="pill">Tools / Internet</span></div>
 </li>
+<li class="tool" data-title="url shortener, branded short links &amp; analytics | tinyurl tinyurl.com https://tinyurl.com/">
+<a class="link" href="https://tinyurl.com/" rel="noopener noreferrer" target="_blank">URL Shortener, Branded Short Links &amp; Analytics | TinyURL</a>
+<div class="meta"><span>tinyurl.com</span><span class="pill">Tools / Internet</span></div>
+</li>
+</ul>
 <li class="tool" data-title="url converter pdfmyurl.com https://pdfmyurl.com/">
 <a class="link" href="https://pdfmyurl.com/" rel="noopener noreferrer" target="_blank">URL Converter</a>
 <div class="meta"><span>pdfmyurl.com</span><span class="pill">Tools / Internet</span></div>
@@ -512,31 +578,37 @@ kbd{
 <a class="link" href="https://www.spinxo.com/" rel="noopener noreferrer" target="_blank">Username Generator - Personalized Name Ideas - Available Usernames Search</a>
 <div class="meta"><span>spinxo.com</span><span class="pill">Tools / Internet</span></div>
 </li>
-</ul>
 </section>
-
-<section data-category="Uptime &amp; Outage Monitoring" id="uptime-outage-monitoring"><h2>Uptime &amp; outage monitoring <span class="pill"></span></h2>
+<section data-category="Uptime &amp; Outage Monitoring" id="uptime-outage-monitoring"><h2>Uptime &amp; Outage Monitoring</h2>
 <ul>
-<li class="tool" data-title="downdetector downdetector.com https://downdetector.com/">
-<a class="link" href="https://downdetector.com/" rel="noopener noreferrer" target="_blank">Downdetector</a>
-<div class="meta"><span>downdetector.com</span><span class="pill">Tools / Internet</span></div>
-</li>
+
+
+
 <li class="tool" data-title="automated malware analysis - joe sandbox cloud basic joesandbox.com https://www.joesandbox.com/#windows">
 <a class="link" href="https://www.joesandbox.com/#windows" rel="noopener noreferrer" target="_blank">Automated Malware Analysis - Joe Sandbox Cloud Basic</a>
 <div class="meta"><span>joesandbox.com</span><span class="pill">Tools / Internet</span></div>
 </li>
-</ul>
-</section>
-
-<section data-category="Cyber Resources &amp; Software Alternatives" id="dev-scripting-resources"><h2>Dev &amp; scripting resources <span class="pill"></span></h2>
-<ul>
-<li class="tool" data-title="patorjk.com: web apps, programming, fun stuff patorjk.com https://patorjk.com/">
-<a class="link" href="https://patorjk.com/" rel="noopener noreferrer" target="_blank">patorjk.com: web apps, programming, fun stuff</a>
-<div class="meta"><span>patorjk.com</span><span class="pill">Tools / Exploits/Leaks</span></div>
+<li class="tool" data-title="downdetector downdetector.com https://downdetector.com/">
+<a class="link" href="https://downdetector.com/" rel="noopener noreferrer" target="_blank">Downdetector</a>
+<div class="meta"><span>downdetector.com</span><span class="pill">Tools / Internet</span></div>
 </li>
-<li class="tool" data-title="php project, php projects ideas, php latest tutorials, php oops concept phpgurukul.com https://phpgurukul.com/">
-<a class="link" href="https://phpgurukul.com/" rel="noopener noreferrer" target="_blank">PHP Project, PHP Projects Ideas, PHP Latest tutorials, PHP oops Concept</a>
-<div class="meta"><span>phpgurukul.com</span><span class="pill">Tools / Reference</span></div>
+</ul></section>
+<section data-category="Cyber Resources &amp; Software Alternatives" id="dev-scripting-resources"><h2>Dev &amp; Scripting Resources</h2>
+<ul>
+
+
+
+
+
+
+
+
+
+
+
+<li class="tool" data-title="alternativeto - crowdsourced software recommendations alternativeto.net https://alternativeto.net/">
+<a class="link" href="https://alternativeto.net/" rel="noopener noreferrer" target="_blank">AlternativeTo - Crowdsourced software recommendations</a>
+<div class="meta"><span>alternativeto.net</span><span class="pill">Tools / Reference</span></div>
 </li>
 <li class="tool" data-title="code search | grep by vercel grep.app https://grep.app/">
 <a class="link" href="https://grep.app/" rel="noopener noreferrer" target="_blank">Code Search | Grep by Vercel</a>
@@ -546,9 +618,17 @@ kbd{
 <a class="link" href="https://www.searchftps.net/" rel="noopener noreferrer" target="_blank">FTP Indexer - NAPALM</a>
 <div class="meta"><span>searchftps.net</span><span class="pill">Tools / Internet</span></div>
 </li>
-<li class="tool" data-title="alternativeto - crowdsourced software recommendations alternativeto.net https://alternativeto.net/">
-<a class="link" href="https://alternativeto.net/" rel="noopener noreferrer" target="_blank">AlternativeTo - Crowdsourced software recommendations</a>
-<div class="meta"><span>alternativeto.net</span><span class="pill">Tools / Reference</span></div>
+<li class="tool" data-title="pastes archive - pastebin.com pastebin.com https://pastebin.com/archive">
+<a class="link" href="https://pastebin.com/archive" rel="noopener noreferrer" target="_blank">Pastes Archive - Pastebin.com</a>
+<div class="meta"><span>pastebin.com</span><span class="pill">Tools / Reference</span></div>
+</li>
+<li class="tool" data-title="patorjk.com: web apps, programming, fun stuff patorjk.com https://patorjk.com/">
+<a class="link" href="https://patorjk.com/" rel="noopener noreferrer" target="_blank">patorjk.com: web apps, programming, fun stuff</a>
+<div class="meta"><span>patorjk.com</span><span class="pill">Tools / Exploits/Leaks</span></div>
+</li>
+<li class="tool" data-title="php project, php projects ideas, php latest tutorials, php oops concept phpgurukul.com https://phpgurukul.com/">
+<a class="link" href="https://phpgurukul.com/" rel="noopener noreferrer" target="_blank">PHP Project, PHP Projects Ideas, PHP Latest tutorials, PHP oops Concept</a>
+<div class="meta"><span>phpgurukul.com</span><span class="pill">Tools / Reference</span></div>
 </li>
 <li class="tool" data-title="Search 22 - imported - search-22.com - https://search-22.com/about">
 <a class="link" href="https://search-22.com/about" rel="noopener noreferrer" target="_blank">Search 22</a>
@@ -566,19 +646,31 @@ kbd{
 <a class="link" href="https://www.imageidentify.com/" rel="noopener noreferrer" target="_blank">Wolfram Language Image Identification Project</a>
 <div class="meta"><span>imageidentify.com</span><span class="pill">Tools / LookUp</span></div>
 </li>
-<li class="tool" data-title="pastes archive - pastebin.com pastebin.com https://pastebin.com/archive">
-<a class="link" href="https://pastebin.com/archive" rel="noopener noreferrer" target="_blank">Pastes Archive - Pastebin.com</a>
-<div class="meta"><span>pastebin.com</span><span class="pill">Tools / Reference</span></div>
-</li>
 </ul>
 </section>
-
-<section data-category="Leaks, breaches &amp; exploits" id="leaks-breaches-exploits"><h2>Leaks, breaches &amp; exploits <span class="pill"></span></h2>
+<section data-category="Leaks, Breaches &amp; Exploits" id="leaks-breaches-exploits"><h2>Leaks, Breaches &amp; Exploits</h2>
 <div class="note">For defensive/security research and informational incident responses only</div>
 <ul>
+
+
+
+
+
+
+
+
+
+<li class="tool" data-title="Exploit - imported - exploit.in - https://exploit.in">
+<a class="link" href="https://exploit.in" rel="noopener noreferrer" target="_blank">Exploit</a>
+<div class="meta"><span>exploit.in</span><span class="pill">Imported</span></div>
+</li>
 <li class="tool" data-title="exploit database - exploits for penetration testers, researchers, and ethical hackers exploit-db.com https://www.exploit-db.com/">
 <a class="link" href="https://www.exploit-db.com/" rel="noopener noreferrer" target="_blank">Exploit Database - Exploits for Penetration Testers, Researchers, and Ethical Hackers</a>
 <div class="meta"><span>exploit-db.com</span><span class="pill">Tools / Exploits/Leaks</span></div>
+</li>
+<li class="tool" data-title="exploit trends dashboard.shadowserver.org https://dashboard.shadowserver.org/">
+<a class="link" href="https://dashboard.shadowserver.org/" rel="noopener noreferrer" target="_blank">Exploit Trends</a>
+<div class="meta"><span>dashboard.shadowserver.org</span><span class="pill">Tools / Exploits/Leaks</span></div>
 </li>
 <li class="tool" data-title="have i been pwned: check if your email has been compromised in a data breach haveibeenpwned.com https://haveibeenpwned.com/">
 <a class="link" href="https://haveibeenpwned.com/" rel="noopener noreferrer" target="_blank">Have I Been Pwned: Check if your email has been compromised in a data breach</a>
@@ -600,19 +692,25 @@ kbd{
 <a class="link" href="https://ransomlook.io" rel="noopener noreferrer" target="_blank">Ransomlook</a>
 <div class="meta"><span>ransomlook.io</span><span class="pill">Imported</span></div>
 </li>
-<li class="tool" data-title="Exploit - imported - exploit.in - https://exploit.in">
-<a class="link" href="https://exploit.in" rel="noopener noreferrer" target="_blank">Exploit</a>
-<div class="meta"><span>exploit.in</span><span class="pill">Imported</span></div>
-</li>
-<li class="tool" data-title="exploit trends dashboard.shadowserver.org https://dashboard.shadowserver.org/">
-<a class="link" href="https://dashboard.shadowserver.org/" rel="noopener noreferrer" target="_blank">Exploit Trends</a>
-<div class="meta"><span>dashboard.shadowserver.org</span><span class="pill">Tools / Exploits/Leaks</span></div>
-</li>
 </ul>
 </section>
-
-<section data-category="Government Standards &amp; Official Reporting" id="government-standards"><h2>Government &amp; standards <span class="pill"></span></h2>
+<section data-category="Government Standards &amp; Official Reporting" id="government-standards"><h2>Government &amp; Standards</h2>
 <ul>
+
+
+
+
+
+
+
+
+
+
+
+<li class="tool" data-title="american archive of public broadcasting americanarchive.org https://americanarchive.org/">
+<a class="link" href="https://americanarchive.org/" rel="noopener noreferrer" target="_blank">American Archive of Public Broadcasting</a>
+<div class="meta"><span>americanarchive.org</span><span class="pill">Tools / Reference</span></div>
+</li>
 <li class="tool" data-title="department of justice justice.gov https://www.justice.gov/">
 <a class="link" href="https://www.justice.gov/" rel="noopener noreferrer" target="_blank">Department of Justice</a>
 <div class="meta"><span>justice.gov</span><span class="pill">Tools / Reference</span></div>
@@ -624,18 +722,6 @@ kbd{
 <li class="tool" data-title="fbi.gov vault.fbi.gov https://vault.fbi.gov/reading-room-index">
 <a class="link" href="https://vault.fbi.gov/reading-room-index" rel="noopener noreferrer" target="_blank">fbi.gov</a>
 <div class="meta"><span>vault.fbi.gov</span><span class="pill">Tools / Reference</span></div>
-</li>
-<li class="tool" data-title="internet engineering task force ietf.org https://www.ietf.org/">
-<a class="link" href="https://www.ietf.org/" rel="noopener noreferrer" target="_blank">Internet Engineering Task Force</a>
-<div class="meta"><span>ietf.org</span><span class="pill">Tools / Reference</span></div>
-</li>
-<li class="tool" data-title="national archives | resources for genealogists and family historians archives.gov https://www.archives.gov/research/genealogy">
-<a class="link" href="https://www.archives.gov/research/genealogy" rel="noopener noreferrer" target="_blank">National Archives | Resources for Genealogists and Family Historians</a>
-<div class="meta"><span>archives.gov</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="usagov usa.gov https://www.usa.gov/">
-<a class="link" href="https://www.usa.gov/" rel="noopener noreferrer" target="_blank">USAGov</a>
-<div class="meta"><span>usa.gov</span><span class="pill">Tools / Reference</span></div>
 </li>
 <li class="tool" data-title="fraud alerts | office of inspector general oig.treasury.gov https://oig.treasury.gov/fraud-alerts">
 <a class="link" href="https://oig.treasury.gov/fraud-alerts" rel="noopener noreferrer" target="_blank">Fraud Alerts | Office of Inspector General</a>
@@ -649,18 +735,64 @@ kbd{
 <a class="link" href="https://www.ic3.gov/" rel="noopener noreferrer" target="_blank">Internet Crime Complaint Center (IC3)</a>
 <div class="meta"><span>ic3.gov</span><span class="pill">Tools / Reference</span></div>
 </li>
-<li class="tool" data-title="american archive of public broadcasting americanarchive.org https://americanarchive.org/">
-<a class="link" href="https://americanarchive.org/" rel="noopener noreferrer" target="_blank">American Archive of Public Broadcasting</a>
-<div class="meta"><span>americanarchive.org</span><span class="pill">Tools / Reference</span></div>
+<li class="tool" data-title="internet engineering task force ietf.org https://www.ietf.org/">
+<a class="link" href="https://www.ietf.org/" rel="noopener noreferrer" target="_blank">Internet Engineering Task Force</a>
+<div class="meta"><span>ietf.org</span><span class="pill">Tools / Reference</span></div>
+</li>
+<li class="tool" data-title="national archives | resources for genealogists and family historians archives.gov https://www.archives.gov/research/genealogy">
+<a class="link" href="https://www.archives.gov/research/genealogy" rel="noopener noreferrer" target="_blank">National Archives | Resources for Genealogists and Family Historians</a>
+<div class="meta"><span>archives.gov</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="usagov usa.gov https://www.usa.gov/">
+<a class="link" href="https://www.usa.gov/" rel="noopener noreferrer" target="_blank">USAGov</a>
+<div class="meta"><span>usa.gov</span><span class="pill">Tools / Reference</span></div>
 </li>
 </ul>
 </section>
-
-<section data-category="Web archives &amp; Forums"><h2>Web archives &amp; caching <span class="pill"></span></h2>
+<section data-category="Web Archives &amp; Forums"><h2>Web Archives &amp; Caching</h2>
 <ul>
+
+
+
+
+
+
+
+
+
+
+
+<li class="tool" data-title="darkowl, llc darkowl.com https://www.darkowl.com/blog-content/">
+<a class="link" href="https://www.darkowl.com/blog-content/" rel="noopener noreferrer" target="_blank">DarkOwl, LLC</a>
+<div class="meta"><span>darkowl.com</span><span class="pill">Tools / Reference</span></div>
+</li>
+<li class="tool" data-title="encyclopedia dramatica encyclopediadramatica.online https://encyclopediadramatica.online/main_page">
+<a class="link" href="https://encyclopediadramatica.online/Main_Page" rel="noopener noreferrer" target="_blank">Encyclopedia Dramatica</a>
+<div class="meta"><span>encyclopediadramatica.online</span><span class="pill">Tools / Reference</span></div>
+</li>
+<li class="tool" data-title="historic aerials: viewer historicaerials.com https://historicaerials.com/viewer">
+<a class="link" href="https://historicaerials.com/viewer" rel="noopener noreferrer" target="_blank">Historic Aerials: Viewer</a>
+<div class="meta"><span>historicaerials.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="information laundromat informationlaundromat.com https://informationlaundromat.com/">
+<a class="link" href="https://informationlaundromat.com/" rel="noopener noreferrer" target="_blank">Information Laundromat</a>
+<div class="meta"><span>informationlaundromat.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="openstreetmap openstreetmap.org https://www.openstreetmap.org/#map=5/38.01/-95.84">
+<a class="link" href="https://www.openstreetmap.org/#map=5/38.01/-95.84" rel="noopener noreferrer" target="_blank">OpenStreetMap</a>
+<div class="meta"><span>openstreetmap.org</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="redective - the reddit search detective redective.com https://www.redective.com/">
+<a class="link" href="https://www.redective.com/" rel="noopener noreferrer" target="_blank">Redective - The Reddit Search Detective</a>
+<div class="meta"><span>redective.com</span><span class="pill">Tools / LookUp</span></div>
+</li>
 <li class="tool" data-title="stanford internet research data repository scans.io https://scans.io/">
 <a class="link" href="https://scans.io/" rel="noopener noreferrer" target="_blank">Stanford Internet Research Data Repository</a>
 <div class="meta"><span>scans.io</span><span class="pill">Tools / Reference</span></div>
+</li>
+<li class="tool" data-title="thehiddenwiki.org thehiddenwiki.org https://thehiddenwiki.org/">
+<a class="link" href="https://thehiddenwiki.org/" rel="noopener noreferrer" target="_blank">TheHiddenWiki.org</a>
+<div class="meta"><span>thehiddenwiki.org</span><span class="pill">Tools / Reference</span></div>
 </li>
 <li class="tool" data-title="wayback machine archive.org https://archive.org/web/">
 <a class="link" href="https://archive.org/web/" rel="noopener noreferrer" target="_blank">Wayback Machine</a>
@@ -670,44 +802,22 @@ kbd{
 <a class="link" href="https://archive.is/" rel="noopener noreferrer" target="_blank">Webpage archive</a>
 <div class="meta"><span>archive.is</span><span class="pill">Tools / Internet</span></div>
 </li>
-<li class="tool" data-title="historic aerials: viewer historicaerials.com https://historicaerials.com/viewer">
-<a class="link" href="https://historicaerials.com/viewer" rel="noopener noreferrer" target="_blank">Historic Aerials: Viewer</a>
-<div class="meta"><span>historicaerials.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="openstreetmap openstreetmap.org https://www.openstreetmap.org/#map=5/38.01/-95.84">
-<a class="link" href="https://www.openstreetmap.org/#map=5/38.01/-95.84" rel="noopener noreferrer" target="_blank">OpenStreetMap</a>
-<div class="meta"><span>openstreetmap.org</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="thehiddenwiki.org thehiddenwiki.org https://thehiddenwiki.org/">
-<a class="link" href="https://thehiddenwiki.org/" rel="noopener noreferrer" target="_blank">TheHiddenWiki.org</a>
-<div class="meta"><span>thehiddenwiki.org</span><span class="pill">Tools / Reference</span></div>
-</li>
-<li class="tool" data-title="information laundromat informationlaundromat.com https://informationlaundromat.com/">
-<a class="link" href="https://informationlaundromat.com/" rel="noopener noreferrer" target="_blank">Information Laundromat</a>
-<div class="meta"><span>informationlaundromat.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="redective - the reddit search detective redective.com https://www.redective.com/">
-<a class="link" href="https://www.redective.com/" rel="noopener noreferrer" target="_blank">Redective - The Reddit Search Detective</a>
-<div class="meta"><span>redective.com</span><span class="pill">Tools / LookUp</span></div>
-</li>
-<li class="tool" data-title="encyclopedia dramatica encyclopediadramatica.online https://encyclopediadramatica.online/main_page">
-<a class="link" href="https://encyclopediadramatica.online/Main_Page" rel="noopener noreferrer" target="_blank">Encyclopedia Dramatica</a>
-<div class="meta"><span>encyclopediadramatica.online</span><span class="pill">Tools / Reference</span></div>
-</li>
-<li class="tool" data-title="darkowl, llc darkowl.com https://www.darkowl.com/blog-content/">
-<a class="link" href="https://www.darkowl.com/blog-content/" rel="noopener noreferrer" target="_blank">DarkOwl, LLC</a>
-<div class="meta"><span>darkowl.com</span><span class="pill">Tools / Reference</span></div>
-</li>
 </ul>
 </section>
-
-<section data-category="OSINT Frameworks &amp; Collections" id="osint-frameworks-collections"><h2>OSINT frameworks &amp; collections <span class="pill"></span></h2>
+<section data-category="OSINT Frameworks &amp; Collections" id="osint-frameworks-collections"><h2>OSINT Frameworks &amp; Collections</h2>
 <div class="note">Collection of similar OSINT Tools from around the web</div>
 <ul>
-<li class="tool" data-title="owasp cheat sheet series cheatsheetseries.owasp.org https://cheatsheetseries.owasp.org/index.html">
-<a class="link" href="https://cheatsheetseries.owasp.org/index.html" rel="noopener noreferrer" target="_blank">OWASP Cheat Sheet Series</a>
-<div class="meta"><span>cheatsheetseries.owasp.org</span><span class="pill">Tools / Reference</span></div>
-</li>
+
+
+
+
+
+
+
+
+
+
+
 <li class="tool" data-title="bellingcat - the home of online investigations bellingcat.com https://www.bellingcat.com/">
 <a class="link" href="https://www.bellingcat.com/" rel="noopener noreferrer" target="_blank">bellingcat - the home of online investigations</a>
 <div class="meta"><span>bellingcat.com</span><span class="pill">Tools / Reference</span></div>
@@ -736,13 +846,17 @@ kbd{
 <a class="link" href="https://osintframework.com/" rel="noopener noreferrer" target="_blank">OSINT Framework</a>
 <div class="meta"><span>osintframework.com</span><span class="pill">Tools / Reference</span></div>
 </li>
-<li class="tool" data-title="worldmap of osint tools cybdetective.com https://cybdetective.com/osintmap/">
-<a class="link" href="https://cybdetective.com/osintmap/" rel="noopener noreferrer" target="_blank">Worldmap of OSINT tools</a>
-<div class="meta"><span>cybdetective.com</span><span class="pill">Tools / Reference</span></div>
+<li class="tool" data-title="owasp cheat sheet series cheatsheetseries.owasp.org https://cheatsheetseries.owasp.org/index.html">
+<a class="link" href="https://cheatsheetseries.owasp.org/index.html" rel="noopener noreferrer" target="_blank">OWASP Cheat Sheet Series</a>
+<div class="meta"><span>cheatsheetseries.owasp.org</span><span class="pill">Tools / Reference</span></div>
 </li>
 <li class="tool" data-title="shodan.io shodan.io https://www.shodan.io/">
 <a class="link" href="https://www.shodan.io/" rel="noopener noreferrer" target="_blank">shodan.io</a>
 <div class="meta"><span>shodan.io</span><span class="pill">Tools / LookUp</span></div>
+</li>
+<li class="tool" data-title="worldmap of osint tools cybdetective.com https://cybdetective.com/osintmap/">
+<a class="link" href="https://cybdetective.com/osintmap/" rel="noopener noreferrer" target="_blank">Worldmap of OSINT tools</a>
+<div class="meta"><span>cybdetective.com</span><span class="pill">Tools / Reference</span></div>
 </li>
 </ul>
 </section>
