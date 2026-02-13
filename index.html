@@ -911,39 +911,75 @@ a.link{
 })();
   
 // JS Search Bar Redirect Function
-  (function addPerToolSearch(){
-  const tools = Array.from(document.querySelectorAll('.tool[data-search-template]'));
+ (function addPerToolSearchAuto(){
+  // Domain -> search results URL template. Must include {q}.
+  const SEARCH_TEMPLATES = {
+    "urlscan.io": "https://urlscan.io/search/#" + encodeURIComponent("{q}"),
+    "whois.com": "https://www.whois.com/whois/{q}",
+    "shodan.io": "https://www.shodan.io/search?query={q}",
+    "archive.org": "https://web.archive.org/web/*/{q}",
+    "archive.is": "https://archive.is/{q}",
+    "dnslytics.com": "https://dnslytics.com/search?q={q}",
+    "securitytrails.com": "https://securitytrails.com/list/apex_domain/{q}",
+
+    // Examples you can add once sties query format conifmed:
+    // "informationlaundromat.com": "https://informationlaundromat.com/search?q={q}",
+    // "redective.com": "https://www.redective.com/?q={q}"
+  };
+
+  function getDomain(url){
+    try { return new URL(url).hostname.replace(/^www\./, ""); }
+    catch { return ""; }
+  }
+
+  const tools = Array.from(document.querySelectorAll(".tool"));
 
   tools.forEach(tool => {
-    const tpl = tool.getAttribute('data-search-template');
-    if (!tpl || !tpl.includes('{q}')) return;
+    const a = tool.querySelector("a.link");
+    if (!a) return;
 
-    const wrap = document.createElement('form');
-    wrap.className = 'tool-search';
-    wrap.setAttribute('autocomplete', 'off');
+    // If author already set a template, respect it.
+    let tpl = tool.getAttribute("data-search-template");
 
-    const input = document.createElement('input');
-    input.type = 'search';
-    input.placeholder = 'Search this site…';
+    if (!tpl) {
+      const domain = getDomain(a.href);
+      tpl = SEARCH_TEMPLATES[domain] || "";
+      if (tpl) tool.setAttribute("data-search-template", tpl);
+    }
 
-    const btn = document.createElement('button');
-    btn.type = 'submit';
-    btn.textContent = 'Search';
+    tpl = tool.getAttribute("data-search-template") || "";
+    if (!tpl.includes("{q}")) return;
+
+    // Avoid adding twice
+    if (tool.querySelector("form.tool-search")) return;
+
+    const wrap = document.createElement("form");
+    wrap.className = "tool-search";
+    wrap.setAttribute("autocomplete", "off");
+
+    const input = document.createElement("input");
+    input.type = "search";
+    input.placeholder = "Search this site…";
+
+    const btn = document.createElement("button");
+    btn.type = "submit";
+    btn.textContent = "Search";
 
     wrap.appendChild(input);
     wrap.appendChild(btn);
 
-    wrap.addEventListener('submit', (e) => {
+    wrap.addEventListener("submit", (e) => {
       e.preventDefault();
-      const q = (input.value || '').trim();
+      const q = (input.value || "").trim();
       if (!q) return;
 
-      const url = tpl.replace('{q}', encodeURIComponent(q));
-      window.open(url, '_blank', 'noopener,noreferrer');
+      const url = tpl.replace("{q}", encodeURIComponent(q));
+      window.open(url, "_blank", "noopener,noreferrer");
     });
 
     tool.appendChild(wrap);
   });
+})();
 })();
 </script>
 </body>
