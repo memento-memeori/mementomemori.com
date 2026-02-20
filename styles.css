@@ -128,3 +128,25 @@ kbd{
 .sep{border:0;border-top:1px solid var(--line);margin:14px 0;}
 .dialog-bottom{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;}
 @media (max-width:720px){ .form-grid{grid-template-columns:1fr;} }
+
+/* Make the search box user-resizable */
+.search-row{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+.search-resize{
+  flex: 1;
+  min-width: 220px;   /* don't let it collapse too far */
+  max-width: 100%;
+  resize: horizontal; /* ✅ drag handle */
+  overflow: auto;     /* required for resize handle to appear */
+}
+
+/* Ensure input fills the resizable wrapper */
+.search-resize > #q{
+  width: 100%;
+}
+
