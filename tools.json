@@ -1,0 +1,1444 @@
+{
+  "meta": {
+    "title": "OSINT Tools Directory",
+    "generatedAt": "2026-02-20T00:07:11.157Z",
+    "version": 1
+  },
+  "categories": [
+    {
+      "id": "search-and-discovery",
+      "name": "Search & Discovery"
+    },
+    {
+      "id": "osint-frameworks-and-collections",
+      "name": "OSINT Frameworks & Collections"
+    },
+    {
+      "id": "people-identity-and-contact-enrichment",
+      "name": "People, Identity & Contact Enrichment"
+    },
+    {
+      "id": "public-records-and-legal",
+      "name": "Public Records & Legal"
+    },
+    {
+      "id": "companies-entities-and-corporate-registries",
+      "name": "Companies, Entities & Corporate Registries"
+    },
+    {
+      "id": "government-and-standards",
+      "name": "Government & Standards"
+    },
+    {
+      "id": "network-ip-and-infrastructure",
+      "name": "Network, IP & Infrastructure"
+    },
+    {
+      "id": "web-dns-ssl-and-email-diagnostics",
+      "name": "Web, DNS, SSL & Email Diagnostics"
+    },
+    {
+      "id": "threat-intel-malware-and-sandboxes",
+      "name": "Threat Intel, Malware & Sandboxes"
+    },
+    {
+      "id": "leaks-breaches-and-exploits",
+      "name": "Leaks, Breaches & Exploits"
+    },
+    {
+      "id": "web-archives-and-caching",
+      "name": "Web Archives & Caching"
+    },
+    {
+      "id": "media-files-and-forensics",
+      "name": "Media, Files & Forensics"
+    },
+    {
+      "id": "utilities-decode-convert-and-generate",
+      "name": "Utilities: Decode, Convert & Generate"
+    },
+    {
+      "id": "finance-and-investing-reference",
+      "name": "Finance & Investing Reference"
+    },
+    {
+      "id": "monitoring-and-outages",
+      "name": "Monitoring & Outages"
+    },
+    {
+      "id": "link-tracking-and-ip-loggers-use-ethically",
+      "name": "Link Tracking & IP Loggers (Use Ethically)"
+    }
+  ],
+  "tools": [
+    {
+      "id": "code-search-grep-by-vercel-https-grep-app",
+      "name": "Code Search | Grep by Vercel",
+      "url": "https://grep.app/",
+      "categoryId": "search-and-discovery",
+      "keywords": "code search | grep by vercel grep.app https://grep.app/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "ftp-indexer-napalm-https-www-searchftps-net",
+      "name": "FTP Indexer - NAPALM",
+      "url": "https://www.searchftps.net/",
+      "categoryId": "search-and-discovery",
+      "keywords": "ftp indexer - napalm searchftps.net https://www.searchftps.net/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "infospace-https-infospace-com",
+      "name": "InfoSpace",
+      "url": "https://infospace.com/",
+      "categoryId": "search-and-discovery",
+      "keywords": "infospace - Open Source Internet Search Alternative - infospace.com https://infospace.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "melissa-lookups-https-lookups-melissa-com-home",
+      "name": "Melissa Lookups",
+      "url": "https://lookups.melissa.com/home",
+      "categoryId": "search-and-discovery",
+      "keywords": "Lookups  - lookups.melissa.com - Geolocation, Census, Person and Business Lookup",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "mxtoolbox-network-and-misc-toolkit-https-mxtoolbox-com",
+      "name": "MxToolbox Network and Misc Toolkit",
+      "url": "https://mxtoolbox.com",
+      "categoryId": "search-and-discovery",
+      "keywords": "mxtoolbox mxtoolbox.com https://mxtoolbox.com",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "pastes-archive-pastebin-com-https-pastebin-com-archive",
+      "name": "Pastes Archive - Pastebin.com",
+      "url": "https://pastebin.com/archive",
+      "categoryId": "search-and-discovery",
+      "keywords": "pastes archive - pastebin.com pastebin.com https://pastebin.com/archive",
+      "workflow": [
+        "domain",
+        "archives"
+      ]
+    },
+    {
+      "id": "random-tools-https-randomtools-io",
+      "name": "Random Tools",
+      "url": "https://randomtools.io/",
+      "categoryId": "search-and-discovery",
+      "keywords": "Random Tools - Web, Social Media and Dev Toolkit",
+      "workflow": [
+        "domain",
+        "username"
+      ]
+    },
+    {
+      "id": "bellingcat-toolkit-https-bellingcat-gitbook-io-toolkit",
+      "name": "Bellingcat Toolkit",
+      "url": "https://bellingcat.gitbook.io/toolkit",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "bellingcat toolkit bellingcat.gitbook.io https://bellingcat.gitbook.io/toolkit",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "cipher387-online-tools-for-osint-https-github-com-cipher387-osint-stuff-tool-collection",
+      "name": "Cipher387 - Online tools for OSINT",
+      "url": "https://github.com/cipher387/osint_stuff_tool_collection",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "online tools for osint github.com/cipher387",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "datavis-by-osint-combine-https-osintcombine-tools",
+      "name": "DataVis by OSINT Combine",
+      "url": "https://osintcombine.tools/",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "datavis by osint combine osintcombine.tools https://osintcombine.tools/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "mosint-open-source-automated-email-osint-tool-help-net-security-https-www-helpnetsecurity-",
+      "name": "Mosint: Open-source automated email OSINT tool - Help Net Security",
+      "url": "https://www.helpnetsecurity.com",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "mosint: open-source automated email osint tool - help net security helpnetsecurity.com https://www.helpnetsecurity.com",
+      "workflow": [
+        "domain",
+        "email",
+        "company"
+      ]
+    },
+    {
+      "id": "osint-framework-https-osintframework-com",
+      "name": "OSINT Framework",
+      "url": "https://osintframework.com/",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "osint framework osintframework.com https://osintframework.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "worldmap-of-osint-tools-https-cybdetective-com-osintmap",
+      "name": "Worldmap of OSINT tools",
+      "url": "https://cybdetective.com/osintmap/",
+      "categoryId": "osint-frameworks-and-collections",
+      "keywords": "worldmap of osint tools cybdetective.com https://cybdetective.com/osintmap/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "analyzeid-https-analyzeid-com",
+      "name": "AnalyzeID",
+      "url": "https://analyzeid.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "find sites owned by the same person analyzeid.com https://analyzeid.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "car-make-model-recognition-api-https-carnet-ai",
+      "name": "Car Make/Model Recognition API",
+      "url": "https://carnet.ai/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "Car Make/Model AI Search",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "clustrmaps-free-people-search-engine-https-clustrmaps-com",
+      "name": "Clustrmaps - Free People Search Engine",
+      "url": "https://clustrmaps.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "clustrmaps - free people search engine clustrmaps.com https://clustrmaps.com/",
+      "workflow": [
+        "domain",
+        "people"
+      ]
+    },
+    {
+      "id": "international-phone-directories-https-www-thisnumber-com",
+      "name": "International Phone Directories",
+      "url": "https://www.thisnumber.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "international phone directories thisnumber.com https://www.thisnumber.com/",
+      "workflow": [
+        "domain",
+        "people"
+      ]
+    },
+    {
+      "id": "redective-https-www-redective-com",
+      "name": "Redective",
+      "url": "https://www.redective.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "Reddit Username Search",
+      "workflow": [
+        "domain",
+        "username"
+      ]
+    },
+    {
+      "id": "social-media-search-engine-https-www-social-searcher-com",
+      "name": "Social Media Search Engine",
+      "url": "https://www.social-searcher.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "social media search engine - Search usernames, hashtags, comments, profiles and more",
+      "workflow": [
+        "domain",
+        "username"
+      ]
+    },
+    {
+      "id": "spydialer-voicemail-lookup-https-www-spydialer-com",
+      "name": "SpyDialer - Voicemail Lookup",
+      "url": "https://www.spydialer.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "Anonymous voicemail dialer - Check a phone numbers voicemail https://www.spydialer.com/",
+      "workflow": [
+        "domain",
+        "email",
+        "people"
+      ]
+    },
+    {
+      "id": "username-generator-https-www-spinxo-com",
+      "name": "Username Generator",
+      "url": "https://www.spinxo.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "username generator - personalized name ideas - available usernames search spinxo.com https://www.spinxo.com/",
+      "workflow": [
+        "domain",
+        "username"
+      ]
+    },
+    {
+      "id": "username-search-https-whatsmyname-app",
+      "name": "Username Search",
+      "url": "https://whatsmyname.app/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "username search - cross-site username search tool - export to csv and other formats",
+      "workflow": [
+        "domain",
+        "ip",
+        "username"
+      ]
+    },
+    {
+      "id": "wedding-registry-search-https-www-theknot-com-registry-couplesearch",
+      "name": "Wedding Registry Search",
+      "url": "https://www.theknot.com/registry/couplesearch",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "wedding registry search and website finder",
+      "workflow": [
+        "domain",
+        "people",
+        "company"
+      ]
+    },
+    {
+      "id": "whitepages-official-site-https-www-whitepages-com",
+      "name": "Whitepages® - Official Site",
+      "url": "https://www.whitepages.com/",
+      "categoryId": "people-identity-and-contact-enrichment",
+      "keywords": "whitepages® -find people, phone numbers, addresses & more",
+      "workflow": [
+        "domain",
+        "people"
+      ]
+    },
+    {
+      "id": "arrest-records-https-recentlybooked-com",
+      "name": "Arrest Records",
+      "url": "https://recentlybooked.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "Public Record arrest and court records",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "bureau-of-prisons-inmate-locator-https-www-bop-gov-inmateloc",
+      "name": "Bureau of Prisons Inmate Locator",
+      "url": "https://www.bop.gov/inmateloc/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "Bureau of Prison's (BOP) Offical Inmate Look-Up",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "find-a-grave-https-www-findagrave-com",
+      "name": "Find A Grave",
+      "url": "https://www.findagrave.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "Public Grave and Obituary Information",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "historical-military-records-https-www-fold3-com",
+      "name": "Historical Military Records",
+      "url": "https://www.fold3.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "historical military records - fold3 fold3.com https://www.fold3.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "justia-case-law-search-https-law-justia-com-cases",
+      "name": "Justia Case Law Search",
+      "url": "https://law.justia.com/cases/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "Case Law and Public Court Document Look-Up",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "notary-public-search-https-notary-snapdocs-com-notary-public",
+      "name": "Notary Public Search",
+      "url": "https://notary.snapdocs.com/notary-public",
+      "categoryId": "public-records-and-legal",
+      "keywords": "Notary Public Search and Records",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "public-records-search-judyrecords-https-www-judyrecords-com",
+      "name": "Public Records Search - judyrecords",
+      "url": "https://www.judyrecords.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "public records search - judyrecords",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "public-records-search-the-original-resource-worldwide-https-publicrecords-searchsystems-ne",
+      "name": "Public Records | Search the Original Resource Worldwide",
+      "url": "https://publicrecords.searchsystems.net/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "World-wide public records",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "ssn-validation-check-https-www-ssn-check-org",
+      "name": "SSN Validation Check",
+      "url": "https://www.ssn-check.org/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "SSN Validator",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "stretto-bankruptcy-case-search-https-cases-stretto-com",
+      "name": "Stretto Bankruptcy Case Search",
+      "url": "https://cases.stretto.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "stretto bankruptcy case search cases.stretto.com https://cases.stretto.com/",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "usa-directory-https-www-officialusa-com",
+      "name": "USA Directory",
+      "url": "https://www.officialusa.com/",
+      "categoryId": "public-records-and-legal",
+      "keywords": "USA Directory",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "business-email-finder-free-business-email-search-https-www-experte-com-email-finder",
+      "name": "Business Email Finder: Free Business Email Search",
+      "url": "https://www.experte.com/email-finder",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "email finder: free email search - no signup required | experte.com experte.com https://www.experte.com/email-finder",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "company-index-the-layoff-https-www-thelayoff-com-index-e-page-1",
+      "name": "Company Index | The Layoff",
+      "url": "https://www.thelayoff.com/index/e/page-1",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "Corporate Information and News",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "corporation-wiki-find-connections-between-people-and-companies-https-www-corporationwiki-c",
+      "name": "Corporation Wiki - Find Connections between People and Companies",
+      "url": "https://www.corporationwiki.com/",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "corporation wiki - find connections between people and companies",
+      "workflow": [
+        "domain",
+        "people"
+      ]
+    },
+    {
+      "id": "importyeti-find-quality-suppliers-https-www-importyeti-com",
+      "name": "ImportYeti - Find Quality Suppliers",
+      "url": "https://www.importyeti.com/",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "importyeti - find quality suppliers importyeti.com https://www.importyeti.com/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "open-payrolls-https-openpayrolls-com",
+      "name": "Open Payrolls",
+      "url": "https://openpayrolls.com/",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "open payrolls public salary database openpayrolls.com https://openpayrolls.com/",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "opencorporates-com-https-opencorporates-com",
+      "name": "opencorporates.com",
+      "url": "https://opencorporates.com/",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "opencorporates.com opencorporates.com https://opencorporates.com/",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "public-corp-lookup-https-qpublic-schneidercorp-com",
+      "name": "Public Corp Lookup",
+      "url": "https://qpublic.schneidercorp.com/",
+      "categoryId": "companies-entities-and-corporate-registries",
+      "keywords": "public corp lookup qpublic.schneidercorp.com https://qpublic.schneidercorp.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "department-of-justice-https-www-justice-gov",
+      "name": "Department of Justice",
+      "url": "https://www.justice.gov/",
+      "categoryId": "government-and-standards",
+      "keywords": "department of justice justice.gov https://www.justice.gov/",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "dru-sjodin-national-sex-offender-public-website-https-www-nsopw-gov",
+      "name": "Dru Sjodin National Sex Offender Public Website",
+      "url": "https://www.nsopw.gov/",
+      "categoryId": "government-and-standards",
+      "keywords": "dru sjodin national sex offender public website nsopw.gov https://www.nsopw.gov/",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "edgar-full-text-search-sec-gov-https-www-sec-gov-edgar-search",
+      "name": "EDGAR Full Text Search | SEC.gov",
+      "url": "https://www.sec.gov/edgar/search/",
+      "categoryId": "government-and-standards",
+      "keywords": "edgar full text search | sec.gov sec.gov https://www.sec.gov/edgar/search/",
+      "workflow": [
+        "domain",
+        "company"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "fbi-gov-https-vault-fbi-gov-reading-room-index",
+      "name": "fbi.gov",
+      "url": "https://vault.fbi.gov/reading-room-index",
+      "categoryId": "government-and-standards",
+      "keywords": "fbi.gov vault.fbi.gov https://vault.fbi.gov/reading-room-index",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "fraud-alerts-office-of-inspector-general-https-oig-treasury-gov-fraud-alerts",
+      "name": "Fraud Alerts | Office of Inspector General",
+      "url": "https://oig.treasury.gov/fraud-alerts",
+      "categoryId": "government-and-standards",
+      "keywords": "fraud alerts | office of inspector general oig.treasury.gov https://oig.treasury.gov/fraud-alerts",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "identitytheft-gov-other-contact-information-https-www-identitytheft-gov-top-company-contac",
+      "name": "IdentityTheft.gov - Other Contact Information",
+      "url": "https://www.identitytheft.gov/Top-Company-Contacts",
+      "categoryId": "government-and-standards",
+      "keywords": "identitytheft.gov - other contact information identitytheft.gov https://www.identitytheft.gov/top-company-contacts",
+      "workflow": [
+        "domain",
+        "people",
+        "company"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "internet-crime-complaint-center-ic3-https-www-ic3-gov",
+      "name": "Internet Crime Complaint Center (IC3)",
+      "url": "https://www.ic3.gov/",
+      "categoryId": "government-and-standards",
+      "keywords": "internet crime complaint center (ic3) ic3.gov https://www.ic3.gov/",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "internet-engineering-task-force-https-www-ietf-org",
+      "name": "Internet Engineering Task Force",
+      "url": "https://www.ietf.org/",
+      "categoryId": "government-and-standards",
+      "keywords": "internet engineering task force ietf.org https://www.ietf.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "national-archives-resources-for-genealogists-and-family-historians-https-www-archives-gov-",
+      "name": "National Archives | Resources for Genealogists and Family Historians",
+      "url": "https://www.archives.gov/research/genealogy",
+      "categoryId": "government-and-standards",
+      "keywords": "national archives | https://www.archives.gov/research/genealogy",
+      "workflow": [
+        "domain",
+        "archives"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "owasp-cheat-sheet-series-https-cheatsheetseries-owasp-org-index-html",
+      "name": "OWASP Cheat Sheet Series",
+      "url": "https://cheatsheetseries.owasp.org/index.html",
+      "categoryId": "government-and-standards",
+      "keywords": "owasp cheat sheet series cheatsheetseries.owasp.org https://cheatsheetseries.owasp.org/index.html",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "usagov-https-www-usa-gov",
+      "name": "USAGov",
+      "url": "https://www.usa.gov/",
+      "categoryId": "government-and-standards",
+      "keywords": "usagov usa.gov https://www.usa.gov/",
+      "workflow": [
+        "domain"
+      ],
+      "tags": [
+        "gov"
+      ]
+    },
+    {
+      "id": "abuseipdb-ip-address-blacklist-check-https-www-abuseipdb-com",
+      "name": "AbuseIPDB - IP Address Blacklist Check",
+      "url": "https://www.abuseipdb.com/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "abuseipdb - ip address blacklist check abuseipdb.com https://www.abuseipdb.com/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "bulk-ip-lookup-https-www-infobyip-com-ipbulklookup-php",
+      "name": "Bulk IP Lookup",
+      "url": "https://www.infobyip.com/ipbulklookup.php",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "bulk ip lookup infobyip.com https://www.infobyip.com/ipbulklookup.php",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "censys-io-ip-host-and-certificate-information-https-search-censys-io",
+      "name": "Censys.io - IP Host and Certificate Information",
+      "url": "https://search.censys.io/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "Censys.io - IP Host and Certificate Information https://search.censys.io/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "dns-records-and-full-dns-report-https-securitytrails-com",
+      "name": "DNS records and Full DNS Report",
+      "url": "https://securitytrails.com",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "dns records and full dns report securitytrails.com https://securitytrails.com",
+      "workflow": [
+        "domain",
+        "ip",
+        "company"
+      ]
+    },
+    {
+      "id": "domain-investigator-https-abhijithb200-github-io-investigator",
+      "name": "Domain Investigator",
+      "url": "https://abhijithb200.github.io/investigator/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "domain investigator.io",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "domains-integrity-service-by-hold-security-llc-https-holdintegrity-com-checker",
+      "name": "Domains Integrity Service by Hold Security LLC",
+      "url": "https://holdintegrity.com/checker",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "domains integrity service by hold security llc. holdintegrity.com https://holdintegrity.com/checker",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "icann-lookup-https-lookup-icann-org-en",
+      "name": "ICANN Lookup",
+      "url": "https://lookup.icann.org/en",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "icann lookup lookup.icann.org https://lookup.icann.org/en",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "ip-address-data-with-ipinfo-api-tools-ipinfo-io-https-ipinfo-io-tools-map",
+      "name": "IP Address Data with IPinfo API Tools - IPinfo.io",
+      "url": "https://ipinfo.io/tools/map",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "ip address data with ipinfo api tools - ipinfo.io ipinfo.io https://ipinfo.io/tools/map",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "ip-whois-lookup-https-www-whois-com-whois",
+      "name": "IP Whois Lookup",
+      "url": "https://www.whois.com/whois/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "ip whois lookup whois.com https://www.whois.com/whois/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "multiple-origin-routes-report-bgp-he-net-https-bgp-he-net",
+      "name": "Multiple Origin Routes Report - bgp.he.net",
+      "url": "https://bgp.he.net",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "multiple origin routes report - bgp.he.net bgp.he.net https://bgp.he.net",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "network-intelligence-netify-https-www-netify-ai",
+      "name": "Network Intelligence | Netify",
+      "url": "https://www.netify.ai/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "network intelligence | netify netify.ai https://www.netify.ai/",
+      "workflow": [
+        "domain",
+        "malware"
+      ]
+    },
+    {
+      "id": "openstreetmap-https-www-openstreetmap-org",
+      "name": "OpenStreetMap",
+      "url": "https://www.openstreetmap.org",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "openstreetmap openstreetmap.org https://www.openstreetmap.org",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "peeringdb-https-www-peeringdb-com",
+      "name": "Peeringdb",
+      "url": "https://www.peeringdb.com",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "Peeringdb - Public Internet Database Server Lookup- https://peeringdb.com",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "port-scanner-check-test-secure-https-portscanner-online",
+      "name": "Port scanner - Check, Test, Secure",
+      "url": "https://portscanner.online/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "port scanner - check, test, secure portscanner.online https://portscanner.online/",
+      "workflow": [
+        "domain",
+        "ip",
+        "company"
+      ]
+    },
+    {
+      "id": "reverse-ip-ns-mx-whois-and-search-tools-https-dnslytics-com",
+      "name": "Reverse IP, NS, MX, WHOIS and Search Tools",
+      "url": "https://dnslytics.com/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "reverse ip, ns, mx, whois and search tools dnslytics.com https://dnslytics.com/",
+      "workflow": [
+        "domain",
+        "ip",
+        "email"
+      ]
+    },
+    {
+      "id": "shodan-io-https-www-shodan-io",
+      "name": "shodan.io",
+      "url": "https://www.shodan.io/",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "shodan.io shodan.io https://www.shodan.io/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "wireless-network-database-query-https-wigle-net",
+      "name": "Wireless Network Database Query",
+      "url": "https://wigle.net",
+      "categoryId": "network-ip-and-infrastructure",
+      "keywords": "Wigle -  - wigle.net - https://wigle.net",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "cms-detector-https-whatcms-org",
+      "name": "CMS Detector",
+      "url": "https://whatcms.org/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "cms detector whatcms.org https://whatcms.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "cookie-checker-for-websites-https-www-cookieserve-com",
+      "name": "Cookie checker for websites",
+      "url": "https://www.cookieserve.com/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "cookie checker for websites cookieserve.com https://www.cookieserve.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "dns-propagation-checker-https-www-whatsmydns-net",
+      "name": "DNS Propagation Checker",
+      "url": "https://www.whatsmydns.net/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "dns propagation checker whatsmydns.net https://www.whatsmydns.net/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "email-reputation-https-emailrep-io",
+      "name": "Email Reputation",
+      "url": "https://emailrep.io/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "email reputation emailrep.io https://emailrep.io/",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "security-header-analyser-https-securityheaders-com",
+      "name": "Security Header Analyser",
+      "url": "https://securityheaders.com/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "analyse your http response headers securityheaders.com https://securityheaders.com/",
+      "workflow": [
+        "domain",
+        "company"
+      ]
+    },
+    {
+      "id": "whatismybrowser-com-https-explore-whatismybrowser-com-useragents-parse",
+      "name": "WhatIsMyBrowser.com",
+      "url": "https://explore.whatismybrowser.com/useragents/parse/",
+      "categoryId": "web-dns-ssl-and-email-diagnostics",
+      "keywords": "whatismybrowser.com explore.whatismybrowser.com https://explore.whatismybrowser.com/useragents/parse/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "automated-malware-analysis-joe-sandbox-cloud-basic-https-www-joesandbox-com",
+      "name": "Automated Malware Analysis - Joe Sandbox Cloud Basic",
+      "url": "https://www.joesandbox.com",
+      "categoryId": "threat-intel-malware-and-sandboxes",
+      "keywords": "automated malware analysis - joe sandbox cloud basic joesandbox.com https://www.joesandbox.com",
+      "workflow": [
+        "domain",
+        "malware"
+      ]
+    },
+    {
+      "id": "urlscan-io-https-urlscan-io-search",
+      "name": "urlscan.io",
+      "url": "https://urlscan.io/search/#*",
+      "categoryId": "threat-intel-malware-and-sandboxes",
+      "keywords": "urlscan.io urlscan.io https://urlscan.io/search/#*",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "virustotal-home-https-www-virustotal-com",
+      "name": "VirusTotal - Home",
+      "url": "https://www.virustotal.com",
+      "categoryId": "threat-intel-malware-and-sandboxes",
+      "keywords": "virustotal - home virustotal.com https://www.virustotal.com",
+      "workflow": [
+        "domain",
+        "malware"
+      ]
+    },
+    {
+      "id": "business-data-leaks-use-caution-https-business-data-leaks-com",
+      "name": "Business Data Leaks - *Use Caution*",
+      "url": "https://business-data-leaks.com/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "leaked data business-data-leaks.com https://business-data-leaks.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "digital-footprint-check-https-www-digitalfootprintcheck-com-checks-free-checker-html",
+      "name": "Digital Footprint Check",
+      "url": "https://www.digitalfootprintcheck.com/checks/free-checker.html",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "digital footprint check - Social Media and Data Breach Search",
+      "workflow": [
+        "domain",
+        "email",
+        "username"
+      ]
+    },
+    {
+      "id": "exploit-database-https-www-exploit-db-com",
+      "name": "Exploit Database",
+      "url": "https://www.exploit-db.com/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "exploit database - exploits for penetration testers, researchers, and ethical hackers exploit-db.com https://www.exploit-db.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "exploit-trends-https-dashboard-shadowserver-org",
+      "name": "Exploit Trends",
+      "url": "https://dashboard.shadowserver.org/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "exploit trends dashboard.shadowserver.org https://dashboard.shadowserver.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "exploit-in-russian-hosted-exploit-breach-news-and-updates-forum-https-exploit-in",
+      "name": "Exploit.in - Russian Hosted Exploit/Breach News and Updates Forum",
+      "url": "https://exploit.in",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "Exploit -  - exploit.in - https://exploit.in",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "have-i-been-pwned-https-haveibeenpwned-com",
+      "name": "Have I Been Pwned",
+      "url": "https://haveibeenpwned.com/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "have i been pwned: check if your email has been compromised in a data breach haveibeenpwned.com https://haveibeenpwned.com/",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "icij-offshore-leaks-database-panama-papers-pandora-files-https-offshoreleaks-icij-org",
+      "name": "ICIJ - Offshore Leaks Database - Panama Papers, Pandora Files",
+      "url": "https://offshoreleaks.icij.org/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "icij offshore leaks database offshoreleaks.icij.org https://offshoreleaks.icij.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "leak-lookup-data-breach-search-engine-https-leak-lookup-com",
+      "name": "Leak - Lookup | Data Breach Search Engine",
+      "url": "https://leak-lookup.com/",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "leak - lookup | data breach search engine leak-lookup.com https://leak-lookup.com/",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "ransomlook-ransomware-campaign-tracker-https-ransomlook-io",
+      "name": "Ransomlook - Ransomware Campaign Tracker",
+      "url": "https://ransomlook.io",
+      "categoryId": "leaks-breaches-and-exploits",
+      "keywords": "Ransomlook -  - ransomlook.io - https://ransomlook.io",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "american-archive-of-public-broadcasting-https-americanarchive-org",
+      "name": "American Archive of Public Broadcasting",
+      "url": "https://americanarchive.org/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "american archive of public broadcasting americanarchive.org https://americanarchive.org/",
+      "workflow": [
+        "domain",
+        "archives"
+      ]
+    },
+    {
+      "id": "darkowl-llc-https-www-darkowl-com-blog-content",
+      "name": "DarkOwl, LLC",
+      "url": "https://www.darkowl.com/blog-content/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "darkowl, llc darkowl.com https://www.darkowl.com/blog-content/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "encyclopedia-dramatica-https-encyclopediadramatica-online-main-page",
+      "name": "Encyclopedia Dramatica",
+      "url": "https://encyclopediadramatica.online/Main_Page",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "encyclopedia dramatica encyclopediadramatica.online https://encyclopediadramatica.online/main_page",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "historic-aerials-viewer-https-historicaerials-com-viewer",
+      "name": "Historic Aerials: Viewer",
+      "url": "https://historicaerials.com/viewer",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "historic aerials: viewer historicaerials.com https://historicaerials.com/viewer",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "information-laundromat-https-informationlaundromat-com",
+      "name": "Information Laundromat",
+      "url": "https://informationlaundromat.com/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "information laundromat informationlaundromat.com https://informationlaundromat.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "occrp-aleph-investigative-database-https-aleph-occrp-org",
+      "name": "OCCRP Aleph Investigative Database",
+      "url": "https://aleph.occrp.org/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "occrp aleph investigative database aleph.occrp.org https://aleph.occrp.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "stanford-internet-research-data-repository-https-scans-io",
+      "name": "Stanford Internet Research Data Repository",
+      "url": "https://scans.io/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "stanford internet research data repository scans.io https://scans.io/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "thehiddenwiki-org-https-thehiddenwiki-org",
+      "name": "TheHiddenWiki.org",
+      "url": "https://thehiddenwiki.org/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "thehiddenwiki.org thehiddenwiki.org https://thehiddenwiki.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "wayback-machine-https-archive-org-web",
+      "name": "Wayback Machine",
+      "url": "https://archive.org/web/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "wayback machine archive.org https://archive.org/web/",
+      "workflow": [
+        "domain",
+        "archives"
+      ]
+    },
+    {
+      "id": "webpage-archive-https-archive-is",
+      "name": "Webpage archive",
+      "url": "https://archive.is/",
+      "categoryId": "web-archives-and-caching",
+      "keywords": "webpage archive archive.is https://archive.is/",
+      "workflow": [
+        "domain",
+        "archives"
+      ]
+    },
+    {
+      "id": "ai-fake-image-detector-https-www-fakeimagedetector-com",
+      "name": "AI Fake Image Detector",
+      "url": "https://www.fakeimagedetector.com/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "ai fake image detector fakeimagedetector.com https://www.fakeimagedetector.com/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "convert-image-to-text-and-pdf-to-doc-converter-https-www-onlineocr-net",
+      "name": "Convert - Image to text and PDF to Doc converter",
+      "url": "https://www.onlineocr.net/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "convert - image to text and pdf to doc converter onlineocr.net https://www.onlineocr.net/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "file-metadata-analysis-https-www-metadata2go-com",
+      "name": "File Metadata Analysis",
+      "url": "https://www.metadata2go.com/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "file metadata analysis metadata2go.com https://www.metadata2go.com/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "forensically-image-analyzer-https-29a-ch-photo-forensics-level-sweep",
+      "name": "Forensically | Image Analyzer",
+      "url": "https://29a.ch/photo-forensics/#level-sweep",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "forensically, 29a.ch https://29a.ch/photo-forensics/#level-sweep",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "fotoforensics-geolocation-extractor-https-fotoforensics-com",
+      "name": "FotoForensics | Geolocation Extractor",
+      "url": "https://fotoforensics.com/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "fotoforensics fotoforensics.com https://fotoforensics.com/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "photo-location-search-using-ai-https-picarta-ai",
+      "name": "Photo Location Search using AI",
+      "url": "https://picarta.ai/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "photo location search using ai picarta.ai https://picarta.ai/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "wolfram-language-image-identification-project-https-www-imageidentify-com",
+      "name": "Wolfram Language Image Identification Project",
+      "url": "https://www.imageidentify.com/",
+      "categoryId": "media-files-and-forensics",
+      "keywords": "wolfram language image identification project imageidentify.com https://www.imageidentify.com/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "alternativeto-crowdsourced-software-recommendations-https-alternativeto-net",
+      "name": "AlternativeTo - Crowdsourced software recommendations",
+      "url": "https://alternativeto.net/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "alternativeto - crowdsourced software recommendations alternativeto.net https://alternativeto.net/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "decrypt-hashes-online-https-hashes-com-en-decrypt-hash",
+      "name": "Decrypt hashes online",
+      "url": "https://hashes.com/en/decrypt/hash",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "decrypt md5, sha1, mysql, ntlm, sha256, md5 email, sha256 email, sha512, wordpress, bcrypt hashes for free online hashes.com https://hashes.com/en/decrypt/hash",
+      "workflow": [
+        "domain",
+        "email"
+      ]
+    },
+    {
+      "id": "decrypt-rot-47-cipher-https-www-dcode-fr-rot-47-cipher",
+      "name": "Decrypt ROT-47 Cipher",
+      "url": "https://www.dcode.fr/rot-47-cipher",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "decrypt rot-47 cipher dcode.fr https://www.dcode.fr/rot-47-cipher",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "epieos-the-ultimate-osint-tool-https-epieos-com",
+      "name": "Epieos, the ultimate OSINT tool",
+      "url": "https://epieos.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "epieos, the ultimate osint tool epieos.com https://epieos.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "php-project-downloads-https-phpgurukul-com",
+      "name": "PHP Project Downloads",
+      "url": "https://phpgurukul.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "php project, php projects ideas, php latest tutorials, php oops concept phpgurukul.com https://phpgurukul.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "random-data-generator-generatedata-com-https-generatedata-com-generator",
+      "name": "Random Data Generator | generatedata.com",
+      "url": "https://generatedata.com/generator",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "generatedata.com generatedata.com https://generatedata.com/generator",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "reported-bots-lookup-https-botscout-com",
+      "name": "Reported Bots Lookup",
+      "url": "https://botscout.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "bot lookup botscout.com https://botscout.com/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "scamalytics-https-scamalytics-com",
+      "name": "Scamalytics",
+      "url": "https://scamalytics.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "scamalytics scamalytics.com https://scamalytics.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "url-shortener-url-analytics-tinyurl-https-tinyurl-com",
+      "name": "URL Shortener - URL Analytics | TinyURL",
+      "url": "https://tinyurl.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "url shortener, branded short links & analytics | tinyurl tinyurl.com https://tinyurl.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "url-to-pdf-converter-https-pdfmyurl-com",
+      "name": "URL to PDF Converter",
+      "url": "https://pdfmyurl.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "url converter pdfmyurl.com https://pdfmyurl.com/",
+      "workflow": [
+        "domain",
+        "media"
+      ]
+    },
+    {
+      "id": "web-link-integrity-scanner-scamadviser-https-www-scamadviser-com",
+      "name": "Web Link Integrity Scanner - Scamadviser",
+      "url": "https://www.scamadviser.com",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "web link integrity scanner - scamadviser scamadviser.com https://www.scamadviser.com/check-website",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "weboproxy-web-based-tor-browser-https-weboproxy-com",
+      "name": "WebOProxy - Web Based Tor Browser",
+      "url": "https://weboproxy.com/",
+      "categoryId": "utilities-decode-convert-and-generate",
+      "keywords": "weboproxy weboproxy.com https://weboproxy.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "bogleheads-https-www-bogleheads-org-wiki-main-page",
+      "name": "Bogleheads",
+      "url": "https://www.bogleheads.org/wiki/Main_Page",
+      "categoryId": "finance-and-investing-reference",
+      "keywords": "bogleheads - Investment and Insider Insights - bogleheads.org https://www.bogleheads.org/wiki/main_page",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "insider-superinestor-charts-dataroma-https-www-dataroma-com-m-home-php",
+      "name": "Insider/Superinestor Charts | DATAROMA",
+      "url": "https://www.dataroma.com/m/home.php",
+      "categoryId": "finance-and-investing-reference",
+      "keywords": "insider/superinestor charts | dataroma dataroma.com https://www.dataroma.com/m/home.php",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "routing-number-lookup-aba-https-routingnumber-aba-com-default1-aspx",
+      "name": "Routing Number Lookup (ABA)",
+      "url": "https://routingnumber.aba.com/default1.aspx",
+      "categoryId": "finance-and-investing-reference",
+      "keywords": "routing number lookup aba.com https://routingnumber.aba.com/default1.aspx",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "swift-banking-code-lookup-https-bank-codes-swift-code",
+      "name": "SWIFT Banking Code Lookup",
+      "url": "https://bank.codes/swift-code/",
+      "categoryId": "finance-and-investing-reference",
+      "keywords": "swift code lookup bank.codes https://bank.codes/swift-code/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "dns-nameserver-performance-benchmark-https-www-grc-com-dns-benchmark-htm",
+      "name": "DNS Nameserver Performance Benchmark",
+      "url": "https://www.grc.com/dns/benchmark.htm",
+      "categoryId": "monitoring-and-outages",
+      "keywords": "dns nameserver performance benchmark grc.com https://www.grc.com/dns/benchmark.htm",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "downdetector-https-downdetector-com",
+      "name": "Downdetector",
+      "url": "https://downdetector.com/",
+      "categoryId": "monitoring-and-outages",
+      "keywords": "downdetector downdetector.com https://downdetector.com/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "gpsjam-gps-gnss-interference-map-https-gpsjam-org",
+      "name": "GPSJAM GPS/GNSS Interference Map",
+      "url": "https://gpsjam.org/",
+      "categoryId": "monitoring-and-outages",
+      "keywords": "gpsjam gps/gnss interference map gpsjam.org https://gpsjam.org/",
+      "workflow": [
+        "domain"
+      ]
+    },
+    {
+      "id": "live-ip-usage-map-https-www-liveipmap-com",
+      "name": "Live IP Usage Map",
+      "url": "https://www.liveipmap.com/",
+      "categoryId": "monitoring-and-outages",
+      "keywords": "live ip map liveipmap.com https://www.liveipmap.com/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "grabify-ip-grabber-url-generator-https-grabify-link",
+      "name": "Grabify - IP Grabber URL Generator",
+      "url": "https://grabify.link/",
+      "categoryId": "link-tracking-and-ip-loggers-use-ethically",
+      "keywords": "grabify grabify.link https://grabify.link/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    },
+    {
+      "id": "ip-logger-url-shortener-log-and-track-ip-addresses-https-iplogger-org",
+      "name": "IP Logger URL Shortener - Log and Track IP addresses",
+      "url": "https://iplogger.org/",
+      "categoryId": "link-tracking-and-ip-loggers-use-ethically",
+      "keywords": "ip logger url shortener - log and track ip addresses iplogger.org https://iplogger.org/",
+      "workflow": [
+        "domain",
+        "ip"
+      ]
+    }
+  ]
+}
