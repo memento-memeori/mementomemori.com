@@ -1,234 +1,416 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>OSINT Tools Directory</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fireview Tool Directory</title>
 
-<link href="/Fireview_Logo_Final.png" rel="icon" type="image/png"/>
-<link href="/Fireview_favicon_black.ico" rel="icon" type="image/x-icon"/>
+  <link rel="icon" type="image/png" href="/Fireview_Logo_Final.png" />
+  <link rel="icon" type="image/x-icon" href="/Fireview_favicon_black.ico" />
 
-<style>:root{
-  --bg:#000000;        /* darkest background */
-  --panel:#1c0227;     /* cards / sections */
-  --line:#8a78b7;      /* borders */
-  --muted:#9fb7e3;     /* secondary text */
-  --text:#e0e0e0;      /* primary text */
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Fuse.js for fuzzy search -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+</head>
+
+<body>
+  <header class="header" id="header">
+    <div class="wrap header-inner">
+      <img class="site-logo" src="Fireview_Logo_No_Background.png" alt="Site Logo" />
+      <div class="title-row">
+        <h1 id="siteTitle">Fireview Tool Directory</h1>
+        <div class="title-actions">
+          <button id="btnHelp" class="btn ghost" title="Help (?)">?</button>
+          <button id="btnTheme" class="btn ghost" title="Toggle theme (t)">Theme</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="search-row">
+          <input id="q" type="search" placeholder="Search tools (/, e.g. whois, breach, pdf)..." autocomplete="off" />
+          <button id="btnClear" class="btn" title="Clear search (Esc)">Clear</button>
+        </div>
+
+        <div class="filters">
+          <select id="workflow" class="select" aria-label="Workflow mode">
+            <option value="">Workflow: All</option>
+            <option value="domain">Domain / DNS / Web</option>
+            <option value="ip">IP / Network</option>
+            <option value="email">Email</option>
+            <option value="username">Username / Social</option>
+            <option value="people">People / Identity</option>
+            <option value="company">Companies / Legal</option>
+            <option value="archives">Archives</option>
+            <option value="malware">Threat / Malware</option>
+            <option value="media">Media / Files</option>
+          </select>
+
+          <div class="chipbar" role="group" aria-label="Filters">
+            <button class="chip" data-filter="favorites">⭐ Favorites</button>
+            <button class="chip" data-filter="free">Free</button>
+            <button class="chip" data-filter="api">API</button>
+            <button class="chip" data-filter="account">No Account</button>
+            <button class="chip" data-filter="gov">Gov</button>
+          </div>
+
+          <div class="right-actions">
+            <select id="sort" class="select" aria-label="Sort">
+              <option value="name">Sort: Name</option>
+              <option value="category">Sort: Category</option>
+              <option value="fav">Sort: Favorites</option>
+            </select>
+
+            <div class="export-group">
+              <button id="btnExportJson" class="btn ghost">Export JSON</button>
+              <button id="btnExportCsv" class="btn ghost">Export CSV</button>
+              <button id="btnExportMd" class="btn ghost">Export MD</button>
+            </div>
+          </div>
+        </div>
+
+        <nav class="catnav" id="catnav" aria-label="Categories"></nav>
+
+        <div class="status-row">
+          <div id="status" class="status">Loading…</div>
+          <div class="hint">
+            Shortcuts: <kbd>/</kbd> search, <kbd>f</kbd> favorites, <kbd>t</kbd> theme, <kbd>?</kbd> help
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div id="progress"></div>
+
+  <main class="wrap main" id="main"></main>
+
+  <footer class="wrap footer">
+    <div class="muted">
+      Client-only directory. Favorites + notes are stored locally in your browser (LocalStorage).
+    </div>
+  </footer>
+
+  <!-- Help modal -->
+  <dialog id="helpDialog" class="dialog">
+    <form method="dialog" class="dialog-inner">
+      <h2>Help & Shortcuts</h2>
+      <ul class="help-list">
+        <li><kbd>/</kbd> Focus search</li>
+        <li><kbd>Esc</kbd> Clear search</li>
+        <li><kbd>f</kbd> Toggle favorites filter</li>
+        <li><kbd>t</kbd> Toggle theme</li>
+        <li><kbd>?</kbd> Open this help</li>
+      </ul>
+      <div class="dialog-actions">
+        <button class="btn">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
+
+:root{
+  --bg:#000000;
+  --panel:#1c0227;
+  --card:#050109;
+  --line:#8a78b7;
+  --muted:#9fb7e3;
+  --text:#e0e0e0;
+  --accent:#b79cff;
+  --good:#42d392;
+  --warn:#f0c36a;
+  --bad:#ff6b6b;
+
+  --radius:14px;
 }
-*{box-sizing:border-box} body{
+
+:root.light{
+  --bg:#f7f7fb;
+  --panel:#ffffff;
+  --card:#ffffff;
+  --line:#c9c3e6;
+  --muted:#425070;
+  --text:#10121a;
+  --accent:#6b4bff;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
   margin:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
-header{
-  position:sticky;
-  top:0;
-  z-index:10;
+
+.wrap{max-width:1120px;margin:0 auto;padding:14px 16px;}
+.main{padding-top:18px;padding-bottom:60px;}
+
+.header{
+  position:sticky; top:0; z-index:10;
   background:rgba(0,0,0,.92);
-  backdrop-filter: blur(8px);
   border-bottom:1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+:root.light .header{ background:rgba(255,255,255,.92); }
 
-  /*  smooth full-hide animation */
-  transition: transform 0.25s ease-in-out;
-  will-change: transform;
-}
-header.hide{
-  /*  full-hide state  */
-  transform: translateY(-100%);
-}
-.wrap{max-width:1100px;margin:0 auto;padding:14px 16px;}
-h1{margin:0;font-size:20px;font-weight:650;}
-.sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.35;}
-.controls{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  align-items:stretch;
-  margin-top:12px;
-}
-input[type="search"]{
-  width:100%;
-  min-width:0;
-  padding:10px 12px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--bg);
-  color:var(--text);
-  outline:none;
-}
-input[type="search"]::placeholder{
-  color:var(--muted);
-}
-.badges{display:flex;gap:8px;flex-wrap:wrap}
-.badge{
-  border:1px solid var(--line);
-  background:var(--panel);
-  color:var(--text);
-  padding:7px 10px;
-  border-radius:999px;
-  font-size:12px;
-  text-decoration:none;
-  white-space:nowrap;
-}
-.badge:hover{
-  border-color:var(--muted);
-}
-.badge .count{color:var(--muted);font-variant-numeric: tabular-nums;}
-main{max-width:1100px;margin:0 auto;padding:18px 16px 60px;}
-section{
-  margin:20px 0 26px;
-  padding:16px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  background:var(--panel);
-}
-section h2{margin:0 0 10px;font-size:18px}
-.note{color:var(--muted);font-size:12px;line-height:1.45;margin:6px 0 0}
-ul{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;}
-li{
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:10px 12px;
-  background:var(--bg);
-  text-align:center;
-}
-.meta{
-  margin-top:6px;
-  font-size:12px;
-  color:var(--muted);
-
+.header-inner{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:6px;
   text-align:center;
+  gap:10px;
 }
-.pill{
+
+.site-logo{width:220px;height:auto;display:block;margin:0 auto;}
+
+.title-row{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+h1{margin:0;font-size:18px;font-weight:750;letter-spacing:.2px;}
+.title-actions{display:flex;gap:8px;align-items:center;}
+
+.controls{width:100%;display:flex;flex-direction:column;gap:10px;}
+
+.search-row{
+  display:flex; gap:10px; width:100%;
+}
+input[type="search"]{
+  flex:1;
+  padding:10px 12px;
   border:1px solid var(--line);
-  border-radius:0;          /* square */
-  padding:2px 8px;
-  font-size:11px;
-  color:var(--muted);
+  border-radius:12px;
   background:transparent;
+  color:var(--text);
+  outline:none;
 }
-footer{
+input::placeholder{color:var(--muted);}
+
+.btn{
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+  color:var(--text);
+  cursor:pointer;
+  user-select:none;
+}
+.btn:hover{border-color:var(--muted);}
+.btn.ghost{background:transparent;}
+.btn.small{padding:7px 10px;border-radius:10px;font-size:12px;}
+
+.select{
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:transparent;
+  color:var(--text);
+  outline:none;
+}
+.select option{background:var(--bg);color:var(--text);}
+
+.filters{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+}
+.chipbar{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+  font-size:12px;
+}
+.chip.active{
+  background:var(--accent);
+  border-color:transparent;
+  color:#000;
+}
+:root.light .chip.active{color:#fff;}
+.right-actions{
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
+}
+.export-group{display:flex;gap:8px;flex-wrap:wrap;}
+
+.catnav{
+  display:flex;
+  gap:8px;
+  flex-wrap:nowrap;
+  overflow:auto;
+  padding:4px 2px;
+  width:100%;
+}
+.catlink{
+  flex:0 0 auto;
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:7px 10px;
+  text-decoration:none;
+  color:var(--text);
+  font-size:12px;
+  background:var(--panel);
+}
+.catlink:hover{border-color:var(--muted);}
+.catlink .count{color:var(--muted);margin-left:6px;font-variant-numeric:tabular-nums;}
+
+.status-row{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
   color:var(--muted);
+  font-size:12px;
 }
 kbd{
   border:1px solid var(--line);
   border-bottom-width:2px;
   border-radius:6px;
   padding:1px 6px;
-  background:var(--bg);
+  background:transparent;
   color:var(--text);
   font-size:11px;
 }
-.hidden{display:none !important;}
-/* Hide top category navigation (dropdown or badges) */
-#nav,
-.badges{
-  display:none !important;
+
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:var(--accent);z-index:9999;
 }
-/* Alphabetical dropdown menu bar */
-#alphaMenu{
-  width:100%;
-  padding:10px 12px;
+
+.category{
+  margin:18px 0;
+  padding:14px;
   border:1px solid var(--line);
-  border-radius:10px;
-  background:var(--bg);
-  color:var(--text);
-  outline:none;
+  border-radius:var(--radius);
+  background:var(--panel);
 }
-#alphaMenu option,
-#alphaMenu optgroup{
-  background:var(--bg);
-  color:var(--text);
-}
-
-.meta{
-  min-height:36px;
-}
-.tool-search {
-  margin-top: 8px;
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-.tool-search input[type="search"]{
-  width: min(240px, 100%);
-  padding: 6px 8px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: var(--bg);
-  color: var(--text);
-  outline: none;
-  font-size: 12px;
-}
-
-.tool-search button{
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 12px;
-}
-.tool-search button:hover{
-  border-color: var(--muted);
-}
-/* Tool title is text (not a link) */
-.link{
-  display:block;
-  color:var(--text);
-  font-weight:600;
-  font-size:14px;
-  line-height:1.25;
-  text-align:center;
-}
-
-/* Clickable URL shown under the title */
-.url-link{
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  text-decoration:none;
-  word-break:break-all;
-}
-.url-link:hover{
-  color:var(--text);
-  text-decoration:underline;
-}
-
-/* URL Search Cards for Tools */
-li.tool{
+.cathead{
   display:flex;
-  flex-direction:column;
-  justify-content:center;
-  min-height:120px;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
 }
-/* Logo layout */
-.header-inner{
-  display:flex;
-  flex-direction:column;   /* stack logo above search */
-  align-items:center;
-  text-align:center;
+.cathead h2{margin:0;font-size:17px;}
+.catmeta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+.catmeta .muted{color:var(--muted);font-size:12px;}
+.grid{
+  list-style:none;margin:12px 0 0;padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:10px;
 }
 
-/* Logo sizing */
-.site-logo{
-  width:240px;
-  height:auto;
-  display:block;
-  margin:0 auto;
+.card{
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--card);
+  padding:10px 12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-height:132px;
 }
-</style>
-</head>
+.cardtop{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+.name{
+  margin:0;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.2;
+}
+.desc{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+  min-height:32px;
+}
+.url{
+  font-size:12px;
+  color:var(--muted);
+  word-break:break-all;
+  text-decoration:none;
+}
+.url:hover{color:var(--text);text-decoration:underline;}
+.pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.pill{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:11px;
+  color:var(--muted);
+  background:transparent;
+}
+.pill.good{border-color:rgba(66,211,146,.6);color:var(--good);}
+.pill.warn{border-color:rgba(240,195,106,.6);color:var(--warn);}
+.pill.bad{border-color:rgba(255,107,107,.6);color:var(--bad);}
 
-<body>
+.cardactions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+}
+.leftactions{display:flex;gap:8px;flex-wrap:wrap;}
+.rightactions{display:flex;gap:8px;flex-wrap:wrap;}
+
+.iconbtn{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:6px 10px;
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+  font-size:12px;
+}
+.iconbtn:hover{border-color:var(--muted);}
+.iconbtn.active{background:var(--accent);color:#000;border-color:transparent;}
+:root.light .iconbtn.active{color:#fff;}
+
+.notearea{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:8px 10px;
+  background:transparent;
+  color:var(--text);
+  font-size:12px;
+  display:none;
+}
+.notearea.open{display:block;}
+
+.footer{color:var(--muted);font-size:12px;padding-bottom:30px;}
+
+.dialog{
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel);
+  color:var(--text);
+  padding:0;
+}
+.dialog::backdrop{background:rgba(0,0,0,.65);}
+.dialog-inner{padding:14px 16px;min-width:min(520px, 92vw);}
+.help-list{margin:10px 0 0; padding-left:18px;}
+.dialog-actions{display:flex;justify-content:flex-end;margin-top:12px;}
+
 <header>
   <div class="wrap header-inner">
     <img alt="Site Logo" class="site-logo" src="Fireview_Logo_No_Background.png"/>
@@ -1226,6 +1408,516 @@ Contact: fireview.me (at) gmail
     lastY = y;
   }, { passive: true });
 })();
+
+// app.js
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+const state = {
+  data: null,
+  query: "",
+  workflow: "",
+  sort: "name",
+  chips: new Set(), // favorites, free, api, account, gov
+  fuse: null,
+  theme: localStorage.getItem("fv_theme") || "dark",
+  favorites: new Set(JSON.parse(localStorage.getItem("fv_favorites") || "[]")),
+};
+
+const LS_NOTES_KEY = "fv_notes_v1"; // map toolId->note
+const notesMap = new Map(Object.entries(JSON.parse(localStorage.getItem(LS_NOTES_KEY) || "{}")));
+
+function setTheme(theme) {
+  state.theme = theme;
+  localStorage.setItem("fv_theme", theme);
+  document.documentElement.classList.toggle("light", theme === "light");
+}
+
+function saveFavorites() {
+  localStorage.setItem("fv_favorites", JSON.stringify([...state.favorites]));
+}
+
+function saveNotes() {
+  const obj = Object.fromEntries(notesMap.entries());
+  localStorage.setItem(LS_NOTES_KEY, JSON.stringify(obj));
+}
+
+function normalize(s) {
+  return String(s || "").toLowerCase().trim();
+}
+
+function toolMatchesWorkflow(tool, wf) {
+  if (!wf) return true;
+  const arr = Array.isArray(tool.workflow) ? tool.workflow : [];
+  // If workflow metadata isn't present yet, fall back to keywords heuristics
+  if (arr.length) return arr.includes(wf);
+
+  const hay = normalize(`${tool.name} ${tool.keywords || ""} ${tool.url}`);
+  const heuristics = {
+    domain: ["whois", "dns", "domain", "ssl", "cert", "mx", "http", "website"],
+    ip: ["ip", "asn", "bgp", "cidr", "abuse", "blacklist", "port", "shodan", "censys"],
+    email: ["email", "mx", "smtp", "breach", "have i been pwned"],
+    username: ["username", "handle", "reddit", "social"],
+    people: ["people", "identity", "phone", "whitepages", "voicemail", "registry"],
+    company: ["company", "corporate", "registr", "sec", "edgar", "payroll", "bankruptcy"],
+    archives: ["archive", "cached", "wayback"],
+    malware: ["malware", "sandbox", "threat", "intel", "ioc", "virus"],
+    media: ["image", "video", "pdf", "metadata", "forensic", "exif"],
+  };
+  const keys = heuristics[wf] || [];
+  return keys.some(k => hay.includes(k));
+}
+
+function toolMatchesChips(tool) {
+  for (const chip of state.chips) {
+    if (chip === "favorites") {
+      if (!state.favorites.has(tool.id)) return false;
+    }
+    if (chip === "free") {
+      if (tool.cost && tool.cost !== "free") return false;
+      // If no cost metadata, don't exclude
+    }
+    if (chip === "api") {
+      if (tool.api === false) return false;
+      if (tool.api == null) return false; // strict: only show if explicitly api:true
+    }
+    if (chip === "account") {
+      if (tool.requiresAccount === true) return false;
+      if (tool.requiresAccount == null) return false; // strict: only show if explicitly false
+    }
+    if (chip === "gov") {
+      const isGov = (tool.tags || []).includes("gov") || normalize(tool.url).includes(".gov");
+      if (!isGov) return false;
+    }
+  }
+  return true;
+}
+
+function getFilteredTools() {
+  const { tools } = state.data;
+
+  let results = tools;
+
+  // Fuzzy search (if query)
+  const q = normalize(state.query);
+  if (q) {
+    const fuseResults = state.fuse.search(q, { limit: 5000 });
+    results = fuseResults.map(r => r.item);
+  }
+
+  // Workflow + chips filters
+  results = results.filter(t => toolMatchesWorkflow(t, state.workflow)).filter(toolMatchesChips);
+
+  // Sorting
+  if (state.sort === "name") {
+    results = [...results].sort((a, b) => a.name.localeCompare(b.name));
+  } else if (state.sort === "category") {
+    results = [...results].sort((a, b) => (a.categoryId || "").localeCompare(b.categoryId || "") || a.name.localeCompare(b.name));
+  } else if (state.sort === "fav") {
+    results = [...results].sort((a, b) => {
+      const af = state.favorites.has(a.id) ? 1 : 0;
+      const bf = state.favorites.has(b.id) ? 1 : 0;
+      return bf - af || a.name.localeCompare(b.name);
+    });
+  }
+
+  return results;
+}
+
+function updateProgressBar() {
+  const scroll = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const p = height <= 0 ? 0 : (scroll / height) * 100;
+  $("#progress").style.width = `${Math.min(100, Math.max(0, p))}%`;
+}
+
+function downloadText(filename, text, type = "text/plain") {
+  const blob = new Blob([text], { type });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(a.href);
+    a.remove();
+  }, 0);
+}
+
+function exportJSON(tools) {
+  const payload = {
+    meta: { exportedAt: new Date().toISOString(), count: tools.length },
+    tools,
+  };
+  downloadText("fireview-export.json", JSON.stringify(payload, null, 2), "application/json");
+}
+
+function exportCSV(tools) {
+  const header = ["name", "url", "categoryId", "description", "tags", "cost", "requiresAccount", "api", "region", "workflow"];
+  const rows = tools.map(t => [
+    t.name,
+    t.url,
+    t.categoryId || "",
+    (t.description || "").replaceAll("\n", " "),
+    Array.isArray(t.tags) ? t.tags.join("|") : "",
+    t.cost || "",
+    t.requiresAccount ?? "",
+    t.api ?? "",
+    t.region || "",
+    Array.isArray(t.workflow) ? t.workflow.join("|") : "",
+  ]);
+  const csv = [header, ...rows]
+    .map(r => r.map(v => `"${String(v ?? "").replaceAll(`"`, `""`)}"`).join(","))
+    .join("\n");
+  downloadText("fireview-export.csv", csv, "text/csv");
+}
+
+function exportMarkdown(tools, categoriesById) {
+  const byCat = new Map();
+  for (const t of tools) {
+    const key = t.categoryId || "uncategorized";
+    if (!byCat.has(key)) byCat.set(key, []);
+    byCat.get(key).push(t);
+  }
+
+  let md = `# Fireview Tool Directory (Export)\n\nExported: ${new Date().toISOString()}\nCount: ${tools.length}\n\n`;
+  for (const [catId, list] of byCat.entries()) {
+    const catName = categoriesById.get(catId)?.name || catId;
+    md += `## ${catName}\n\n`;
+    for (const t of list.sort((a, b) => a.name.localeCompare(b.name))) {
+      md += `- **${t.name}** — ${t.url}\n`;
+      if (t.description) md += `  - ${t.description}\n`;
+      if (t.tags?.length) md += `  - Tags: ${t.tags.join(", ")}\n`;
+    }
+    md += `\n`;
+  }
+  downloadText("fireview-export.md", md, "text/markdown");
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function render() {
+  const main = $("#main");
+  main.innerHTML = "";
+
+  const categoriesById = new Map(state.data.categories.map(c => [c.id, c]));
+  const filtered = getFilteredTools();
+
+  // Dynamic counts per category
+  const countByCat = new Map();
+  for (const t of filtered) {
+    countByCat.set(t.categoryId, (countByCat.get(t.categoryId) || 0) + 1);
+  }
+
+  // Category nav
+  const nav = $("#catnav");
+  nav.innerHTML = "";
+  for (const c of state.data.categories) {
+    const count = countByCat.get(c.id) || 0;
+    const a = document.createElement("a");
+    a.className = "catlink";
+    a.href = `#${c.id}`;
+    a.innerHTML = `${c.name} <span class="count">(${count})</span>`;
+    nav.appendChild(a);
+  }
+
+  // Status line
+  $("#status").textContent = `${filtered.length} tools shown • ${state.data.tools.length} total`;
+
+  // Render categories in order, but only those with tools in view
+  for (const c of state.data.categories) {
+    const toolsInCat = filtered.filter(t => t.categoryId === c.id);
+    if (!toolsInCat.length) continue;
+
+    const section = document.createElement("section");
+    section.className = "category";
+    section.id = c.id;
+
+    const head = document.createElement("div");
+    head.className = "cathead";
+
+    const h2 = document.createElement("h2");
+    h2.textContent = c.name;
+
+    const meta = document.createElement("div");
+    meta.className = "catmeta";
+
+    const count = document.createElement("div");
+    count.className = "muted";
+    count.textContent = `${toolsInCat.length} tools`;
+
+    const btnOpenAll = document.createElement("button");
+    btnOpenAll.className = "btn small ghost";
+    btnOpenAll.textContent = "Open all";
+    btnOpenAll.title = "Open all tools in this category";
+    btnOpenAll.addEventListener("click", () => {
+      const ok = confirm(`Open ${toolsInCat.length} tabs? Your browser may block popups.`);
+      if (!ok) return;
+      for (const t of toolsInCat) window.open(t.url, "_blank", "noopener,noreferrer");
+    });
+
+    meta.append(count, btnOpenAll);
+    head.append(h2, meta);
+
+    const ul = document.createElement("ul");
+    ul.className = "grid";
+
+    for (const t of toolsInCat) {
+      ul.appendChild(renderCard(t));
+    }
+
+    section.append(head, ul);
+    main.appendChild(section);
+  }
+
+  // If nothing matched
+  if (!main.children.length) {
+    const empty = document.createElement("div");
+    empty.className = "category";
+    empty.innerHTML = `<h2>No results</h2><div class="muted">Try a different search or clear filters.</div>`;
+    main.appendChild(empty);
+  }
+
+  // Export buttons
+  $("#btnExportJson").onclick = () => exportJSON(filtered);
+  $("#btnExportCsv").onclick = () => exportCSV(filtered);
+  $("#btnExportMd").onclick = () => exportMarkdown(filtered, categoriesById);
+}
+
+function renderCard(t) {
+  const li = document.createElement("li");
+  li.className = "card";
+
+  const top = document.createElement("div");
+  top.className = "cardtop";
+
+  const left = document.createElement("div");
+  left.style.flex = "1";
+
+  const name = document.createElement("h3");
+  name.className = "name";
+  name.textContent = t.name;
+
+  const desc = document.createElement("p");
+  desc.className = "desc";
+  desc.textContent = t.description || (t.keywords ? `Keywords: ${t.keywords.slice(0, 90)}${t.keywords.length > 90 ? "…" : ""}` : "—");
+
+  const url = document.createElement("a");
+  url.className = "url";
+  url.href = t.url;
+  url.target = "_blank";
+  url.rel = "noopener noreferrer";
+  url.textContent = t.url;
+
+  const favBtn = document.createElement("button");
+  favBtn.className = "iconbtn";
+  favBtn.textContent = state.favorites.has(t.id) ? "⭐ Favorited" : "☆ Favorite";
+  if (state.favorites.has(t.id)) favBtn.classList.add("active");
+  favBtn.addEventListener("click", () => {
+    if (state.favorites.has(t.id)) state.favorites.delete(t.id);
+    else state.favorites.add(t.id);
+    saveFavorites();
+    render();
+  });
+
+  left.append(name, desc, url);
+  top.append(left, favBtn);
+
+  const pills = document.createElement("div");
+  pills.className = "pills";
+
+  // Pill helpers (only show if present)
+  const addPill = (text, cls = "") => {
+    const s = document.createElement("span");
+    s.className = `pill ${cls}`.trim();
+    s.textContent = text;
+    pills.appendChild(s);
+  };
+
+  if (t.cost) addPill(t.cost, t.cost === "free" ? "good" : "");
+  if (t.api === true) addPill("API", "good");
+  if (t.requiresAccount === false) addPill("No account", "good");
+  if (t.region) addPill(t.region.toUpperCase());
+  if (Array.isArray(t.tags)) t.tags.slice(0, 4).forEach(tag => addPill(tag));
+
+  const actions = document.createElement("div");
+  actions.className = "cardactions";
+
+  const leftActions = document.createElement("div");
+  leftActions.className = "leftactions";
+
+  const btnOpen = document.createElement("button");
+  btnOpen.className = "iconbtn";
+  btnOpen.textContent = "Open";
+  btnOpen.addEventListener("click", () => window.open(t.url, "_blank", "noopener,noreferrer"));
+
+  const btnCopy = document.createElement("button");
+  btnCopy.className = "iconbtn";
+  btnCopy.textContent = "Copy URL";
+  btnCopy.addEventListener("click", async () => {
+    const ok = await copyToClipboard(t.url);
+    btnCopy.textContent = ok ? "Copied ✔️" : "Copy failed";
+    setTimeout(() => (btnCopy.textContent = "Copy URL"), 900);
+  });
+
+  const btnNote = document.createElement("button");
+  btnNote.className = "iconbtn";
+  btnNote.textContent = "📝 Note";
+
+  leftActions.append(btnOpen, btnCopy, btnNote);
+
+  const rightActions = document.createElement("div");
+  rightActions.className = "rightactions";
+
+  const note = document.createElement("textarea");
+  note.className = "notearea";
+  note.rows = 2;
+  note.placeholder = "Personal note (saved locally)…";
+  note.value = notesMap.get(t.id) || "";
+  note.addEventListener("input", () => {
+    const v = note.value.trim();
+    if (v) notesMap.set(t.id, v);
+    else notesMap.delete(t.id);
+    saveNotes();
+  });
+
+  btnNote.addEventListener("click", () => {
+    note.classList.toggle("open");
+    if (note.classList.contains("open")) note.focus();
+  });
+
+  actions.append(leftActions, rightActions);
+
+  li.append(top);
+  if (pills.children.length) li.append(pills);
+  li.append(actions, note);
+
+  return li;
+}
+
+function wireUI() {
+  const q = $("#q");
+  const btnClear = $("#btnClear");
+
+  q.addEventListener("input", () => {
+    state.query = q.value;
+    render();
+  });
+
+  btnClear.addEventListener("click", () => {
+    q.value = "";
+    state.query = "";
+    render();
+    q.focus();
+  });
+
+  $("#workflow").addEventListener("change", (e) => {
+    state.workflow = e.target.value;
+    render();
+  });
+
+  $("#sort").addEventListener("change", (e) => {
+    state.sort = e.target.value;
+    render();
+  });
+
+  // Chips
+  $$(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const f = chip.dataset.filter;
+      if (state.chips.has(f)) {
+        state.chips.delete(f);
+        chip.classList.remove("active");
+      } else {
+        state.chips.add(f);
+        chip.classList.add("active");
+      }
+      render();
+    });
+  });
+
+  // Theme
+  $("#btnTheme").addEventListener("click", () => {
+    setTheme(state.theme === "light" ? "dark" : "light");
+  });
+
+  // Help
+  const helpDialog = $("#helpDialog");
+  $("#btnHelp").addEventListener("click", () => helpDialog.showModal());
+
+  // Keyboard shortcuts
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && document.activeElement !== q) {
+      e.preventDefault();
+      q.focus();
+      return;
+    }
+    if (e.key === "Escape") {
+      if (helpDialog.open) helpDialog.close();
+      q.value = "";
+      state.query = "";
+      render();
+      return;
+    }
+    if (e.key.toLowerCase() === "f" && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      // toggle favorites chip
+      const chip = $(`.chip[data-filter="favorites"]`);
+      chip?.click();
+      return;
+    }
+    if (e.key.toLowerCase() === "t") {
+      $("#btnTheme").click();
+      return;
+    }
+    if (e.key === "?") {
+      helpDialog.showModal();
+      return;
+    }
+  });
+
+  // Scroll progress
+  window.addEventListener("scroll", updateProgressBar, { passive: true });
+  updateProgressBar();
+}
+
+async function init() {
+  setTheme(state.theme);
+
+  const res = await fetch("./tools.json", { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load tools.json (${res.status})`);
+  state.data = await res.json();
+
+  $("#siteTitle").textContent = state.data?.meta?.title || "Fireview Tool Directory";
+
+  // Setup Fuse
+  state.fuse = new Fuse(state.data.tools, {
+    includeScore: true,
+    threshold: 0.35,
+    ignoreLocation: true,
+    keys: [
+      { name: "name", weight: 0.5 },
+      { name: "description", weight: 0.25 },
+      { name: "keywords", weight: 0.2 },
+      { name: "url", weight: 0.05 },
+      { name: "tags", weight: 0.2 },
+    ],
+  });
+
+  wireUI();
+  render();
+}
+
+init().catch(err => {
+  console.error(err);
+  $("#status").textContent = `Error: ${err.message}`;
+});
 </script>
 </body>
 </html>
