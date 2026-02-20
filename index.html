@@ -7,21 +7,21 @@
   <link rel="icon" type="image/png" href="/fireview_flame_favicon.png" />
   <link rel="icon" type="image/x-icon" href="/fireview_flame_favicon.ico" />
   <link rel="stylesheet" href="./styles.css" />
-  <!-- Fuse.js for fuzzy search -->
+ <!-- Fuse.js for fuzzy search -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
 </head>
 
 <body>
   <header class="header" id="header">
     <div class="wrap header-inner">
-      <img class="site-logo" src="fireview_flame_favicon.png" alt="Fireview" />
+      <img class="site-logo" src="Fireview_Logo_No_Background.png" alt="Fireview" />
 
       <div class="title-row">
         <h1 id="siteTitle">Fireview Tool Directory</h1>
         <div class="title-actions">
           <button id="btnHelp" class="btn ghost" title="Help (?)">?</button>
           <button id="btnTheme" class="btn ghost" title="Toggle theme (t)">Theme</button>
-          <button id="btnEditor" class="btn ghost" title="Editor mode (e)">Editor</button>
+          <button id="btnEditorToggle" class="btn ghost" title="Toggle editor (e)">Editor</button>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
             <button class="chip" data-filter="favorites">⭐ Favorites</button>
             <button class="chip" data-filter="free">Free</button>
             <button class="chip" data-filter="api">API</button>
-            <button class="chip" data-filter="account">No Account</button>
+            <button class="chip" data-filter="noaccount">No Account</button>
             <button class="chip" data-filter="gov">Gov</button>
           </div>
 
@@ -64,42 +64,30 @@
               <button id="btnExportJson" class="btn ghost">Export JSON</button>
               <button id="btnExportCsv" class="btn ghost">Export CSV</button>
               <button id="btnExportMd" class="btn ghost">Export MD</button>
+              <button id="btnExportToolsJson" class="btn ghost">Export tools.json</button>
             </div>
+
+            <button id="btnEnrich" class="btn ghost" title="Enrich missing metadata">Enrich</button>
           </div>
         </div>
 
         <nav class="catnav" id="catnav" aria-label="Categories"></nav>
+
+        <div class="status-row">
+          <div id="status" class="status">Loading…</div>
+          <div class="hint">
+            <kbd>/</kbd> search <kbd>f</kbd> favorites <kbd>e</kbd> editor <kbd>t</kbd> theme <kbd>?</kbd> help
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="progress"><div id="progress"></div></div>
   </header>
 
-  <main class="wrap main">
-    <div class="status-row">
-      <div class="muted" id="statusText">Loading…</div>
-      <div class="muted" id="dataMeta"></div>
-    </div>
+  <main class="wrap main" id="main"></main>
 
-    <section class="panel">
-      <div class="panel-head">
-        <h2 class="panel-title">Tools</h2>
-        <div class="panel-actions">
-          <select aria-label="Open tool by name" id="alphaMenu" class="select">
-            <option value="">Toolkit Lookup (A–Z)…</option>
-          </select>
-          <button id="btnEnrich" class="btn ghost" title="Enrich missing metadata">Enrich</button>
-        </div>
-      </div>
-
-      <div id="toolGrid" class="grid" aria-live="polite"></div>
-    </section>
-
-    <footer class="footer muted">
-      Client-only directory. Favorites + notes + editor overrides are stored locally in your browser.
-    </footer>
-  </main>
-
-  <!-- Help modal -->
+  <!-- Help -->
   <dialog id="helpDialog" class="dialog">
     <form method="dialog" class="dialog-inner">
       <h2>Help & Shortcuts</h2>
@@ -109,7 +97,7 @@
         <li><kbd>f</kbd> Toggle favorites filter</li>
         <li><kbd>t</kbd> Toggle theme</li>
         <li><kbd>e</kbd> Toggle editor mode</li>
-        <li><kbd>?</kbd> Open this help</li>
+        <li><kbd>?</kbd> Open help</li>
       </ul>
       <div class="dialog-actions">
         <button class="btn">Close</button>
@@ -117,7 +105,7 @@
     </form>
   </dialog>
 
-  <!-- Editor modal -->
+  <!-- Editor -->
   <dialog id="editorDialog" class="dialog">
     <form method="dialog" class="dialog-inner dialog-wide" id="editorForm">
       <div class="dialog-top">
@@ -130,43 +118,24 @@
       </div>
 
       <div class="form-grid">
-        <label>
-          Name
-          <input id="f_name" required />
-        </label>
+        <label>Name <input id="f_name" required /></label>
+        <label>URL <input id="f_url" required /></label>
 
-        <label>
-          URL
-          <input id="f_url" required />
-        </label>
-
-        <label>
-          Category
+        <label>Category
           <select id="f_categoryId" class="select"></select>
         </label>
 
-        <label>
-          Keywords
-          <input id="f_keywords" placeholder="comma-separated or sentence" />
-        </label>
+        <label>Description <input id="f_description" placeholder="Short summary shown on card" /></label>
 
-        <label>
-          Description
-          <input id="f_description" placeholder="short description shown on card" />
-        </label>
-
-        <label>
-          Workflow (comma-separated)
+        <label>Workflow (comma-separated)
           <input id="f_workflow" placeholder="domain, ip, email, username, people, company…" />
         </label>
 
-        <label>
-          Tags (comma-separated)
-          <input id="f_tags" placeholder="gov, api, free, paid, noaccount…" />
+        <label>Tags (comma-separated)
+          <input id="f_tags" placeholder="gov, api, free, noaccount…" />
         </label>
 
-        <label>
-          Cost
+        <label>Cost
           <select id="f_cost" class="select">
             <option value="">(unknown)</option>
             <option value="free">free</option>
@@ -175,8 +144,7 @@
           </select>
         </label>
 
-        <label>
-          API
+        <label>API
           <select id="f_api" class="select">
             <option value="">(unknown)</option>
             <option value="true">true</option>
@@ -184,28 +152,22 @@
           </select>
         </label>
 
-        <label>
-          Requires account
+        <label>Requires account
           <select id="f_requiresAccount" class="select">
             <option value="">(unknown)</option>
             <option value="true">true</option>
             <option value="false">false</option>
           </select>
         </label>
+
+        <label>Keywords <input id="f_keywords" placeholder="Optional search keywords" /></label>
       </div>
 
       <hr class="sep" />
 
       <div class="dialog-bottom">
-        <div class="muted">
-          Editor mode stores changes in your browser and can export a merged <code>tools.json</code>.
-        </div>
+        <div class="muted">Edits are saved locally in your browser. Export merged <code>tools.json</code> when ready.</div>
         <div class="dialog-actions">
-          <button type="button" class="btn ghost" id="btnExportToolsJson">Export tools.json</button>
-          <label class="btn ghost" style="cursor:pointer">
-            Import tools.json
-            <input id="fileImport" type="file" accept="application/json" hidden />
-          </label>
           <button type="button" class="btn ghost" id="btnResetOverrides">Reset overrides</button>
         </div>
       </div>
