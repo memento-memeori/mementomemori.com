@@ -265,8 +265,9 @@
 
     let activeToolKey = '';
 
-    function openDrawer(drawer) { drawer?.classList.add('open'); }
-    function closeDrawer(drawer) { drawer?.classList.remove('open'); }
+    // CSS uses .hidden { display:none }. Use that for showing/hiding.
+    function openDrawer(drawer) { drawer?.classList.remove('hidden'); }
+    function closeDrawer(drawer) { drawer?.classList.add('hidden'); }
 
     btnNotes?.addEventListener('click', () => openDrawer(notesDrawer));
     btnNotesClose?.addEventListener('click', () => closeDrawer(notesDrawer));
@@ -288,11 +289,11 @@
 
       const notes = readJSON(CFG.LS_TOOL_NOTES, {});
       if (toolNoteText) toolNoteText.value = (notes[k] || '');
-      toolNoteModal?.classList.add('open');
+      toolNoteModal?.classList.remove('hidden');
     }
 
     function closeToolNote() {
-      toolNoteModal?.classList.remove('open');
+      toolNoteModal?.classList.add('hidden');
       activeToolKey = '';
     }
 
@@ -484,4 +485,182 @@
   } else {
     init();
   }
+})();
+
+
+/* ===== Embedded IP Whois (ipapi.co) ===== */
+(() => {
+  'use strict';
+
+  const input = document.getElementById('ipInput');
+  const btnLookup = document.getElementById('btnIpLookup');
+  const btnClear = document.getElementById('btnIpClear');
+  const btnExport = document.getElementById('btnIpExport');
+  const tbody = document.getElementById('ipTbody');
+  const status = document.getElementById('ipStatus');
+
+  // Only run on pages that include the widget
+  if (!input || !btnLookup || !btnClear || !btnExport || !tbody || !status) return;
+
+  const endpoint = (ip) => `https://ipapi.co/${encodeURIComponent(ip)}/json/`;
+
+  const looksLikeIp = (s) => {
+    const x = (s || '').trim();
+    if (!x) return false;
+    if (x.includes(':')) return /^[0-9a-fA-F:]+$/.test(x) && x.length >= 3;  // IPv6-ish
+    return /^(\d{1,3}\.){3}\d{1,3}$/.test(x); // IPv4-ish
+  };
+
+  const uniq = (arr) => Array.from(new Set(arr));
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+  async function mapPool(items, limit, fn) {
+    const ret = [];
+    let i = 0;
+    const workers = Array.from({ length: limit }, async () => {
+      while (i < items.length) {
+        const idx = i++;
+        ret[idx] = await fn(items[idx], idx);
+      }
+    });
+    await Promise.all(workers);
+    return ret;
+  }
+
+  const setStatus = (msg) => { status.textContent = msg || ''; };
+
+  function clearTable() {
+    tbody.innerHTML = '';
+    btnExport.disabled = true;
+  }
+
+  function escapeHtml(s) {
+    return String(s ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  function rowHtml(r) {
+    return `
+      <tr>
+        <td><code>${escapeHtml(r.ip || '')}</code></td>
+        <td>${escapeHtml(r.isp || '')}</td>
+        <td>${escapeHtml(r.company || '')}</td>
+        <td>${escapeHtml(r.asn || '')}</td>
+        <td>${escapeHtml(r.geo || '')}</td>
+        <td>${escapeHtml(r.country || '')}</td>
+      </tr>
+    `;
+  }
+
+  function normalizeRows(ip, data) {
+    const region = data?.region || '';
+    const regionCode = data?.region_code || '';
+    const countryName = data?.country_name || '';
+    const countryCode = data?.country_code || '';
+    const org = data?.org || data?.organization || '';
+    const asn = data?.asn || '';
+
+    const geo =
+      (region && (countryCode === 'US' || countryName === 'United States'))
+        ? `${region}${regionCode ? ` (${regionCode})` : ''}`
+        : (countryName || region || '');
+
+    return {
+      ip,
+      isp: org || '',
+      company: org || '',
+      asn: asn || '',
+      geo: geo || '',
+      country: countryName || ''
+    };
+  }
+
+  function toCsv(rows) {
+    const headers = ['ip', 'isp', 'company', 'asn', 'geo', 'country'];
+    const esc = (v) => {
+      const s = String(v ?? '');
+      const needs = /[",\n]/.test(s);
+      return needs ? `"${s.replaceAll('"', '""')}"` : s;
+    };
+    return [
+      headers.join(','),
+      ...rows.map(r => headers.map(h => esc(r[h])).join(','))
+    ].join('\n');
+  }
+
+  function download(filename, text) {
+    const blob = new Blob([text], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  let lastRows = [];
+
+  async function lookupOne(ip) {
+    await sleep(80);
+    const res = await fetch(endpoint(ip), { method: 'GET' });
+    if (!res.ok) return { ip, error: `HTTP ${res.status}` };
+    const data = await res.json();
+    if (data?.error) return { ip, error: String(data?.reason || data?.error) };
+    return normalizeRows(ip, data);
+  }
+
+  btnLookup.addEventListener('click', async () => {
+    clearTable();
+    lastRows = [];
+
+    const raw = (input.value || '').split('\n').map(x => x.trim()).filter(Boolean);
+    const ips = uniq(raw).filter(looksLikeIp);
+
+    if (ips.length === 0) {
+      setStatus('No valid IPs found.');
+      return;
+    }
+
+    setStatus(`Looking up ${ips.length} IP(s)…`);
+
+    const results = await mapPool(ips, 4, async (ip) => {
+      try { return await lookupOne(ip); }
+      catch (e) { return { ip, error: (e && e.message) ? e.message : 'Request failed' }; }
+    });
+
+    const good = results.filter(r => !r.error);
+    const bad = results.filter(r => r.error);
+
+    tbody.innerHTML = [
+      ...good.map(rowHtml),
+      ...bad.map(b => `
+        <tr>
+          <td><code>${escapeHtml(b.ip)}</code></td>
+          <td colspan="5">Error: ${escapeHtml(b.error)}</td>
+        </tr>
+      `)
+    ].join('');
+
+    lastRows = good;
+    btnExport.disabled = good.length === 0;
+
+    setStatus(`Done. ${good.length} success, ${bad.length} failed.`);
+  });
+
+  btnClear.addEventListener('click', () => {
+    input.value = '';
+    clearTable();
+    setStatus('');
+  });
+
+  btnExport.addEventListener('click', () => {
+    if (!lastRows.length) return;
+    download(`ip-whois-${new Date().toISOString().slice(0,10)}.csv`, toCsv(lastRows));
+  });
 })();
