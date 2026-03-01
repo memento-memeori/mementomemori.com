@@ -372,3 +372,40 @@ section{
   content-visibility:auto;
   contain-intrinsic-size: 400px;
 }
+
+
+/* Top nav tabs (Tools / API's) */
+.site-nav{
+  border-bottom:1px solid var(--line);
+  background:rgba(0,0,0,.92);
+  backdrop-filter: blur(8px);
+}
+.nav-inner{display:flex;gap:10px;align-items:center;padding-top:10px;padding-bottom:10px;}
+.nav-link{
+  display:inline-block;
+  padding:7px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  text-decoration:none;
+  color:var(--text);
+  background:rgba(138,120,183,.10);
+  font-size:12px;
+}
+.nav-link:hover{border-color:var(--muted);}
+.nav-link.active{
+  background:var(--panel);
+  box-shadow:0 0 0 1px rgba(159,183,227,.25) inset;
+}
+
+/* Small helper */
+.h3{margin:0 0 8px;font-size:14px;font-weight:650;}
+
+
+/* Embedded IP Whois */
+.ipwhois-card{margin-top:10px; padding:14px; border:1px solid var(--line); border-radius:14px; background:rgba(0,0,0,.18);}
+.ipwhois-box{margin-top:10px;}
+.ipwhois-table-wrap{overflow:auto; margin-top:10px; border:1px solid var(--line); border-radius:14px;}
+.ipwhois-table{width:100%; border-collapse:collapse; font-size:12px;}
+.ipwhois-table th,.ipwhois-table td{padding:10px 10px; border-bottom:1px solid rgba(138,120,183,.35); text-align:left; vertical-align:top;}
+.ipwhois-table th{position:sticky; top:0; background:rgba(0,0,0,.92); backdrop-filter: blur(8px); z-index:1;}
+.ipwhois-table td code{font-size:11px;}
