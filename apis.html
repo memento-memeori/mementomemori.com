@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self' https://ipapi.co; base-uri 'self'; form-action 'self'; object-src 'none';"/>
+<title>Fireview API Directory</title>
+
+<link href="/Fireview_Logo_Final.png" rel="icon" type="image/png"/>
+<link href="/Fireview_favicon_black.ico" rel="icon" type="image/x-icon"/>
+
+<link rel="stylesheet" href="/assets/styles.css?v=1.8"/>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <nav class="site-nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="nav-link" href="index.html">Tools</a>
+      <a class="nav-link active" href="apis.html">API's</a>
+    </div>
+  </nav>
+
+  <div class="wrap header-inner">
+    <img alt="Site Logo" class="site-logo" src="Fireview_Logo_No_Background.png"/>
+    <h1>Fireview API Directory</h1>
+    <div class="sub">Embedded utilities and API-backed enrichments.</div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="custom-built-apis" data-category="Custom Built APIs">
+    <h2>Custom Built</h2>
+    <div class="note">Interactive tools hosted in-page.</div>
+
+    <div class="ipwhois-card">
+      <h3 class="h3">IP Whois (Embedded)</h3>
+      <div class="note">Paste one IP per line. Results render below. Export as CSV.</div>
+
+      <div class="ipwhois-box">
+        <textarea id="ipInput" class="ta" rows="6" spellcheck="false"
+          placeholder="Examples:
+8.8.8.8
+1.1.1.1
+2606:4700:4700::1111"></textarea>
+
+        <div class="row">
+          <button class="btn" id="btnIpLookup" type="button">Lookup</button>
+          <button class="btn" id="btnIpClear" type="button">Clear</button>
+          <button class="btn ghost" id="btnIpExport" type="button" disabled>Export CSV</button>
+        </div>
+
+        <div id="ipStatus" class="results" aria-live="polite"></div>
+
+        <div class="ipwhois-table-wrap">
+          <table class="ipwhois-table" id="ipTable" aria-label="IP Whois results">
+            <thead>
+              <tr>
+                <th>IP</th>
+                <th>ISP / Org</th>
+                <th>Company</th>
+                <th>ASN</th>
+                <th>Geo</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody id="ipTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="third-party-apis" data-category="Third Party APIs">
+    <h2>3rd Party</h2>
+    <div class="note">Placeholder for vendor-backed API tools (IPQS, VirusTotal, etc.).</div>
+  </section>
+
+  <footer>
+    <div class="note">
+      Disclaimer: This page provides links and utilities for investigative workflows. Use responsibly and comply with applicable laws and policies.
+    </div>
+  </footer>
+</main>
+
+<script src="/assets/app.js?v=1.8"></script>
+</body>
+</html>
